@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">课程签到</string>
+
+    <!--登录界面相关-->
+    <string name="login">登录</string>
+    <string name="account_std">学号</string>
+    <string name="account_tch">教职工号</string>
+    <string name="password">密码</string>
+    <string name="student">学生</string>
+    <string name="teacher">教师</string>
+
+    <!-- 绑定Mac地址相关-->
+    <string name="bind_mac">绑定设备</string>
+    <string name="bind_mac_tips">每个账号都需要绑定一台设备，这意味着当你绑定了当前这台设备后，在其他设备上就不能再登录你的账号了。如果你想把绑定设备换成另一台，你需要做的是联系管理员解绑设备。</string>
+
+    <string name="open_drawer">Open Drawer</string>
+    <string name="close_drawer">Close Drawer</string>
+</resources>

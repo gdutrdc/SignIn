@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#fff"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="164dp"
+        android:background="@drawable/default_account_background"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_std_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:singleLine="true"
+            android:text="学生姓名"
+            android:textColor="#ffffff"
+            android:textSize="26sp"/>
+
+        <TextView
+            android:id="@+id/tv_std_department"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:singleLine="true"
+            android:text="学院"
+            android:textColor="#deffffff"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/tv_std_major_and_class"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:singleLine="true"
+            android:text="专业班级"
+            android:textColor="#deffffff"
+            android:textSize="16sp"/>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/nav_email_std"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/nav_item_background"
+                android:clickable="true">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:src="@drawable/ic_message_grey_500_24dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:layout_marginLeft="72dp"
+                    android:text="邮件信息"/>
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/nav_upload_failed_std"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/nav_item_background"
+                android:clickable="true">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:src="@drawable/ic_assignment_grey_500_24dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="72dp"
+                    android:text="未上传数据"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/nav_settings_std"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/nav_item_background"
+                android:clickable="true">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:src="@drawable/ic_settings_grey_500_24dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="72dp"
+                    android:text="设置"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/nav_switch_account_std"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/nav_item_background"
+                android:clickable="true">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:src="@drawable/ic_account_circle_grey_500_24dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="72dp"
+                    android:text="切换账号"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/nav_exit_std"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/nav_item_background"
+                android:clickable="true">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:src="@drawable/ic_exit_to_app_grey_500_24dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="72dp"
+                    android:text="退出"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+            </FrameLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
