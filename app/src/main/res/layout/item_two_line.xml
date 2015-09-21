@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:gravity="center_vertical"
+              android:minHeight="72dp"
+              android:orientation="vertical"
+              android:paddingLeft="16dp"
+              android:paddingRight="16dp">
+
+    <TextView
+        android:id="@+id/tv_first_line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="首行-样本文字测试"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"/>
+
+    <TextView
+        android:id="@+id/tv_second_line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="第二行-样本文字测试"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
+
+</LinearLayout>

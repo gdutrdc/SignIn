@@ -1,10 +1,14 @@
 package com.rdc.signin.utils;
 
+import com.rdc.signin.constant.Clazz;
 import com.rdc.signin.constant.User;
 import com.rdc.signin.net.control.ConnectConfig;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 /**
  * Created by seasonyuu on 15/9/19.
@@ -41,11 +45,43 @@ public class JSONUtils {
 			user.setTel(jsonObject.getString(ConnectConfig.Login.RESPONSE_TEL));
 			user.setEmail(jsonObject.getString(ConnectConfig.Login.RESPONSE_EMAIL));
 			user.setMac(jsonObject.getString(ConnectConfig.Login.RESPONSE_MAC));
-			if(isStudent)
+			if (isStudent)
 				user.setMajor(jsonObject.getString(ConnectConfig.Login.RESPONSE_MAJOR));
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 		return user;
+	}
+
+	public static ArrayList<Clazz> getClassList(String json) {
+		ArrayList<Clazz> list = new ArrayList<>();
+		try {
+			JSONObject jsonObject = new JSONObject(json);
+			JSONArray jsonArray = jsonObject.getJSONArray(ConnectConfig.GetClassList.RESPONSE_CLASSES);
+			for (int i = 0; i < jsonArray.length(); i++) {
+				list.add(getClass(jsonArray.get(i).toString()));
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	public static Clazz getClass(String json) {
+		Clazz clazz = new Clazz();
+		try {
+			JSONObject jsonObject = new JSONObject(json);
+			clazz.setId(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_ID));
+			clazz.setName(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_NAME));
+			clazz.setTime(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_TIME));
+			clazz.setSum(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_SUM));
+			clazz.setLoc(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_LOC));
+			clazz.setAbout(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_ABOUT));
+			clazz.setWeeks(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_WEEKS));
+			clazz.setHour(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_HOUR));
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return clazz;
 	}
 }

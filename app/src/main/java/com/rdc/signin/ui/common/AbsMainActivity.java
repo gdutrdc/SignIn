@@ -38,11 +38,13 @@ public abstract class AbsMainActivity extends ToolbarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+
 		recyclerView = UIUtils.findView(this, R.id.main_recycler_view);
 		swipeRefreshLayout = UIUtils.findView(this, R.id.main_refresh);
 		drawerLayout = UIUtils.findView(this, R.id.main_container);
 
 		recyclerView.setLayoutManager(new LinearLayoutManager(this));
+		initRecyclerView(recyclerView);
 
 		swipeRefreshLayout.setColorSchemeColors(Color.BLUE, Color.RED, Color.GREEN);
 		swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

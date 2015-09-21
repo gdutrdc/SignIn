@@ -6,6 +6,7 @@ import com.rdc.signin.constant.User;
 import com.rdc.signin.net.control.BaseConnect;
 import com.rdc.signin.net.control.ConnectConfig;
 import com.rdc.signin.net.control.ConnectListener;
+import com.rdc.signin.utils.JSONUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,6 +15,8 @@ import java.util.Map;
  * Created by seasonyuu on 15/9/21.
  */
 public class GetClassList extends BaseConnect {
+	public final int RESULT_SUCCESS = 1;
+
 	public GetClassList(ConnectListener listener) {
 		super(listener);
 	}
@@ -42,6 +45,13 @@ public class GetClassList extends BaseConnect {
 
 	@Override
 	protected void onResult(boolean isConnected, String reason, String response) {
-
+		if (isConnected) {
+			switch (JSONUtils.getResult(response)) {
+				case RESULT_SUCCESS:
+					if (listener != null)
+						listener.onConnect(true, null, response);
+					break;
+			}
+		}
 	}
 }

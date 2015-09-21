@@ -40,6 +40,14 @@ public class ConnectConfig {
 		public static final String URL_TCH = HOST + "Teacher/Class/GetClassListAction";
 		public static final String URL_STD = HOST + "Student/Class/GetClassListAction";
 
-		public static final String RESPONSE_ = "reponse";
+		public static final String RESPONSE_CLASSES = "classes";
+		public static final String RESPONSE_ID = "id";
+		public static final String RESPONSE_NAME = "name";
+		public static final String RESPONSE_TIME = "time";
+		public static final String RESPONSE_SUM = "sum";
+		public static final String RESPONSE_LOC = "loc";
+		public static final String RESPONSE_ABOUT = "about";
+		public static final String RESPONSE_HOUR = "hour";
+		public static final String RESPONSE_WEEKS = "weeks";
 	}
 }
