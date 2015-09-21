@@ -29,6 +29,8 @@ public abstract class AbsMainActivity extends ToolbarActivity {
 	 */
 	protected abstract void onRefresh();
 
+	protected abstract void initRecyclerView(RecyclerView recyclerView);
+
 	protected abstract View createNavigationView();
 
 	@Override

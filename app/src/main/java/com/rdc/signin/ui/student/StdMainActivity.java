@@ -1,5 +1,6 @@
 package com.rdc.signin.ui.student;
 
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.rdc.signin.R;
@@ -11,6 +12,11 @@ import com.rdc.signin.ui.common.AbsMainActivity;
 public class StdMainActivity extends AbsMainActivity {
 	@Override
 	protected void onRefresh() {
+
+	}
+
+	@Override
+	protected void initRecyclerView(RecyclerView recyclerView) {
 
 	}
 

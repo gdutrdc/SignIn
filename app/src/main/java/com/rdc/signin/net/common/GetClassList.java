@@ -26,13 +26,13 @@ public class GetClassList extends BaseConnect {
 	@Override
 	protected Map<String, String> getRequestParams() {
 		HashMap<String, String> params = new HashMap<>();
-		params.put(ConnectConfig.TOKEN,SignInApp.user.getToken());
+		params.put(ConnectConfig.TOKEN, SignInApp.user.getToken());
 		return params;
 	}
 
 	@Override
 	protected String getUrl() {
-		return SignInApp.user.getIdentity() == User.IDENTITY_STUDENT?ConnectConfig.GetClassList.URL_STD:ConnectConfig.GetClassList.URL_TCH;
+		return SignInApp.user.getIdentity() == User.IDENTITY_STUDENT ? ConnectConfig.GetClassList.URL_STD : ConnectConfig.GetClassList.URL_TCH;
 	}
 
 	@Override

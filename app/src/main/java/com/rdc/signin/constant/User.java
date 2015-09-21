@@ -15,6 +15,9 @@ public class User {
 	private String college;
 	private String sex;
 	private String major;
+	private String token;
+	private String password;
+	private String mac;
 
 	public int getIdentity() {
 		return identity;
@@ -23,8 +26,6 @@ public class User {
 	public void setIdentity(int identity) {
 		this.identity = identity;
 	}
-
-	private String mac;
 
 	public String getSex() {
 		return sex;
@@ -38,10 +39,10 @@ public class User {
 		return major;
 	}
 
+
 	public void setMajor(String major) {
 		this.major = major;
 	}
-
 
 	public String getCollege() {
 		return college;
@@ -67,8 +68,6 @@ public class User {
 		this.mac = mac;
 	}
 
-	private String password;
-
 	public String getToken() {
 		return token;
 	}
@@ -77,7 +76,6 @@ public class User {
 		this.token = token;
 	}
 
-	private String token;
 
 	public String getEmail() {
 		return email;

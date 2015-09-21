@@ -1,5 +1,6 @@
 package com.rdc.signin.ui.teacher;
 
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.rdc.signin.R;
@@ -19,6 +20,11 @@ public class TchMainActivity extends AbsMainActivity {
 
 			}
 		}).connect();
+	}
+
+	@Override
+	protected void initRecyclerView(RecyclerView recyclerView) {
+
 	}
 
 	@Override

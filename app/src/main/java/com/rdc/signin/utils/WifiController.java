@@ -15,12 +15,12 @@ import java.util.List;
 /**
  * Created by seasonyuu on 15/9/20.
  */
-public class WifiControler {
+public class WifiController {
 	private WifiManager manager;
 	private boolean isWifiEnabled;
 	private Context context;
 
-	public WifiControler(Context context) {
+	public WifiController(Context context) {
 		this.context = context;
 
 		manager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
@@ -123,7 +123,7 @@ public class WifiControler {
 		manager.startScan();
 		resultList = manager.getScanResults();
 		if (SignInApp.DEBUG)
-			Log.d(WifiControler.class.getSimpleName(), "resultList.size() = " + resultList.size());
+			Log.d(WifiController.class.getSimpleName(), "resultList.size() = " + resultList.size());
 		return resultList;
 	}
 

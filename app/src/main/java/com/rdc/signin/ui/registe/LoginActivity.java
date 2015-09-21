@@ -25,7 +25,7 @@ import com.rdc.signin.utils.DialogUtils;
 import com.rdc.signin.utils.JSONUtils;
 import com.rdc.signin.utils.KeyboardUtils;
 import com.rdc.signin.utils.UIUtils;
-import com.rdc.signin.utils.WifiControler;
+import com.rdc.signin.utils.WifiController;
 
 /**
  * Created by seasonyuu on 15/9/17.
@@ -129,7 +129,7 @@ public class LoginActivity extends ToolbarActivity {
 	}
 
 	private void readUser(User user) {
-		String mac = new WifiControler(this).getLocalMacAddress();
+		String mac = new WifiController(this).getLocalMacAddress();
 		if (user.getMac() == null || user.getMac().equals("null")) {
 			startActivity(new Intent(this, BindMacActivity.class));
 			finish();
