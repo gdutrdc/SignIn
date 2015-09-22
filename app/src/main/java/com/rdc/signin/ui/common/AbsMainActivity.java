@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.rdc.signin.R;
+import com.rdc.signin.ui.widget.DividerItemDecoration;
 import com.rdc.signin.utils.UIUtils;
 
 /**
@@ -44,6 +45,7 @@ public abstract class AbsMainActivity extends ToolbarActivity {
 		drawerLayout = UIUtils.findView(this, R.id.main_container);
 
 		recyclerView.setLayoutManager(new LinearLayoutManager(this));
+		recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
 		initRecyclerView(recyclerView);
 
 		swipeRefreshLayout.setColorSchemeColors(Color.BLUE, Color.RED, Color.GREEN);

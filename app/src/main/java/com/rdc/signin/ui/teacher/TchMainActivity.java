@@ -22,7 +22,7 @@ public class TchMainActivity extends AbsMainActivity {
 			@Override
 			public void onConnect(boolean isConnect, String reason, String response) {
 				if(isConnect){
-					adapter.setClassList(JSONUtils.getClassList(response));
+					adapter.setClassList(JSONUtils.getTchClassList(response));
 					adapter.notifyDataSetChanged();
 					swipeRefreshLayout.setRefreshing(false);
 				}

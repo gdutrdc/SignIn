@@ -76,7 +76,7 @@ public class BindMac extends BaseConnect {
 				break;
 			case RESULT_ALREADY:
 				if(listener!=null)
-					listener.onConnect(false,"该设备已绑定了其他手机",null);
+					listener.onConnect(false,"该设备已绑定了其他账号",null);
 				break;
 		}
 	}

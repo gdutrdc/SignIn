@@ -1,6 +1,9 @@
 package com.rdc.signin.utils;
 
-import com.rdc.signin.constant.Clazz;
+import android.os.Parcelable;
+
+import com.rdc.signin.constant.StdClass;
+import com.rdc.signin.constant.TchClass;
 import com.rdc.signin.constant.User;
 import com.rdc.signin.net.control.ConnectConfig;
 
@@ -53,13 +56,14 @@ public class JSONUtils {
 		return user;
 	}
 
-	public static ArrayList<Clazz> getClassList(String json) {
-		ArrayList<Clazz> list = new ArrayList<>();
+	public static ArrayList<Parcelable> getStdClassList(String json) {
+		ArrayList<Parcelable> list = null;
 		try {
 			JSONObject jsonObject = new JSONObject(json);
+			list = new ArrayList<>();
 			JSONArray jsonArray = jsonObject.getJSONArray(ConnectConfig.GetClassList.RESPONSE_CLASSES);
 			for (int i = 0; i < jsonArray.length(); i++) {
-				list.add(getClass(jsonArray.get(i).toString()));
+				list.add(getStdClass(jsonArray.get(i).toString()));
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -67,21 +71,57 @@ public class JSONUtils {
 		return list;
 	}
 
-	public static Clazz getClass(String json) {
-		Clazz clazz = new Clazz();
+	public static StdClass getStdClass(String json) {
+		StdClass stdClass = null;
 		try {
 			JSONObject jsonObject = new JSONObject(json);
-			clazz.setId(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_ID));
-			clazz.setName(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_NAME));
-			clazz.setTime(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_TIME));
-			clazz.setSum(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_SUM));
-			clazz.setLoc(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_LOC));
-			clazz.setAbout(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_ABOUT));
-			clazz.setWeeks(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_WEEKS));
-			clazz.setHour(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_HOUR));
+			stdClass = new StdClass();
+			stdClass.setClassId(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_CLASS_ID));
+			stdClass.setClassName(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_CLASS_NAME));
+			stdClass.setTime(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_TIME));
+			stdClass.setHour(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_HOUR));
+			stdClass.setAbout(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_ABOUT));
+			stdClass.setWeeks(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_WEEKS));
+			stdClass.setTeacherName(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_TEACHER_NAME));
+			stdClass.setMac(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_MAC));
+			stdClass.setRest(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_REST));
+			stdClass.setSignTimes(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_SIGNTIMES));
+			stdClass.setSum(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_SUM));
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		return clazz;
+		return stdClass;
+	}
+
+	public static ArrayList<Parcelable> getTchClassList(String json) {
+		ArrayList<Parcelable> list = new ArrayList<>();
+		try {
+			JSONObject jsonObject = new JSONObject(json);
+			JSONArray jsonArray = jsonObject.getJSONArray(ConnectConfig.GetClassList.RESPONSE_CLASSES);
+			for (int i = 0; i < jsonArray.length(); i++) {
+				list.add(getTchClass(jsonArray.get(i).toString()));
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	public static TchClass getTchClass(String json) {
+		TchClass tchClass = new TchClass();
+		try {
+			JSONObject jsonObject = new JSONObject(json);
+			tchClass.setId(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_ID));
+			tchClass.setName(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_NAME));
+			tchClass.setTime(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_TIME));
+			tchClass.setSum(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_SUM));
+			tchClass.setLoc(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_LOC));
+			tchClass.setAbout(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_ABOUT));
+			tchClass.setWeeks(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_WEEKS));
+			tchClass.setHour(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_HOUR));
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return tchClass;
 	}
 }

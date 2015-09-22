@@ -1,6 +1,7 @@
 package com.rdc.signin.ui.teacher.adapter;
 
 import android.content.Context;
+import android.os.Parcelable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +10,8 @@ import android.widget.TextView;
 
 import com.rdc.signin.R;
 import com.rdc.signin.app.SignInApp;
-import com.rdc.signin.constant.Clazz;
+import com.rdc.signin.constant.StdClass;
+import com.rdc.signin.constant.TchClass;
 import com.rdc.signin.constant.User;
 import com.rdc.signin.utils.UIUtils;
 
@@ -20,14 +22,14 @@ import java.util.ArrayList;
  */
 public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.ClassViewHolder> {
 	private Context context;
-	private ArrayList<Clazz> list;
+	private ArrayList<Parcelable> list;
 
 	public ClassListAdapter(Context context) {
 		this.context = context;
 		list = new ArrayList<>();
 	}
 
-	public void setClassList(ArrayList<Clazz> list) {
+	public void setClassList(ArrayList<Parcelable> list) {
 		this.list = list;
 	}
 
@@ -45,11 +47,16 @@ public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.Clas
 
 	@Override
 	public void onBindViewHolder(ClassViewHolder holder, int position) {
-		Clazz clazz = list.get(position);
-		holder.tvName.setText(clazz.getName());
-		holder.tvTime.setText(clazz.getTime());
-		if (holder.tvTeacher != null)
-			holder.tvTeacher.setText(clazz.getTeacher());
+		if (SignInApp.user.getIdentity() == User.IDENTITY_STUDENT) {
+			StdClass stdClass = (StdClass) list.get(position);
+			holder.tvName.setText(stdClass.getClassName());
+			holder.tvTeacher.setText(stdClass.getTeacherName());
+			holder.tvTime.setText(stdClass.getTime());
+		} else {
+			TchClass tchClass = (TchClass) list.get(position);
+			holder.tvName.setText(tchClass.getName());
+			holder.tvTime.setText(tchClass.getTime());
+		}
 	}
 
 	@Override

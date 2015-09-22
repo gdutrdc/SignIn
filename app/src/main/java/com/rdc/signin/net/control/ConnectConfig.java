@@ -49,5 +49,12 @@ public class ConnectConfig {
 		public static final String RESPONSE_ABOUT = "about";
 		public static final String RESPONSE_HOUR = "hour";
 		public static final String RESPONSE_WEEKS = "weeks";
+
+		public static final String RESPONSE_CLASS_ID = "classid";
+		public static final String RESPONSE_CLASS_NAME = "classname";
+		public static final String RESPONSE_MAC = "mac";
+		public static final String RESPONSE_TEACHER_NAME = "teachername";
+		public static final String RESPONSE_REST = "rest";
+		public static final String RESPONSE_SIGNTIMES = "signtimes";
 	}
 }
