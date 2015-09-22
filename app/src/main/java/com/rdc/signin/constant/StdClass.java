@@ -16,8 +16,17 @@ public class StdClass implements Parcelable {
 	private String teacherName;
 	private String rest;
 	private String mac;
+	private String loc;
 	private String signTimes;
 	private String sum;
+
+	public String getLoc() {
+		return loc;
+	}
+
+	public void setLoc(String loc) {
+		this.loc = loc;
+	}
 
 	public String getClassId() {
 		return classId;

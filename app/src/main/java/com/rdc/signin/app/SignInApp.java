@@ -2,14 +2,19 @@ package com.rdc.signin.app;
 
 import android.app.Application;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.rdc.signin.constant.User;
 import com.rdc.signin.net.control.NetworkControl;
+
+import java.io.IOException;
 
 /**
  * Created by seasonyuu on 15/9/16.
  */
 public class SignInApp extends Application {
+	private final String TAG = SignInApp.class.getSimpleName();
+
 	private static SharedPreferences _preferences;
 	private static SignInApp application;
 	public static User user;
@@ -29,18 +34,32 @@ public class SignInApp extends Application {
 	}
 
 	public User getRememberUser() {
-		User user = new User();
-		user.setAccount(_preferences.getString("account", ""));
-		user.setPassword(_preferences.getString("password", ""));
-		user.setIdentity(_preferences.getInt("identity", User.IDENTITY_STUDENT));
+		String s = _preferences.getString("user","");
+		User user = null;
+		try {
+			user =  User.deSerialization(s);
+		} catch (IOException e) {
+			if (DEBUG) {
+				Log.d(TAG, "user cannot serialize");
+			}
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			if (DEBUG)
+				Log.d(TAG, "user cannot serialize");
+			e.printStackTrace();
+		}
 		return user;
 	}
 
 	public void rememberUser(User user) {
 		SharedPreferences.Editor editor = _preferences.edit();
-		editor.putString("account", user.getAccount());
-		editor.putString("password", user.getPassword());
-		editor.putInt("identity", user.getIdentity());
+		try {
+			editor.putString("user", User.serialize(user));
+		} catch (IOException e) {
+			e.printStackTrace();
+			if (DEBUG)
+				Log.d(TAG, "user cannot serialize");
+		}
 		editor.commit();
 	}
 

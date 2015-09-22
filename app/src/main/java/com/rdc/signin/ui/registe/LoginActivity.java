@@ -40,6 +40,29 @@ public class LoginActivity extends ToolbarActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		PushManager.startWork(getApplicationContext(), PushConstants.LOGIN_TYPE_API_KEY, "7aVEaZs5vUDRHuETxHRkgUxa");
+
+		if (getIntent().getBooleanExtra("switch_user", false)) {
+
+		} else {
+			User user = SignInApp.getInstance().getRememberUser();
+			if (user != null) {
+				if (user.getAccount().equals("") || user.getPassword().equals("")) {
+
+				} else {
+					SignInApp.user = user;
+					if (user.getIdentity() == User.IDENTITY_STUDENT) {
+						startActivity(new Intent(this, StdMainActivity.class));
+					}
+					else {
+						startActivity(new Intent(this, TchMainActivity.class));
+					}
+					finish();
+					return;
+				}
+			}
+		}
+
 		setContentView(R.layout.activity_login);
 
 		getSupportActionBar().setTitle(R.string.login);
@@ -48,7 +71,6 @@ public class LoginActivity extends ToolbarActivity {
 
 		keyboardUtils = new KeyboardUtils(this, findViewById(R.id.login_tips));
 
-		PushManager.startWork(getApplicationContext(), PushConstants.LOGIN_TYPE_API_KEY, "7aVEaZs5vUDRHuETxHRkgUxa");
 
 	}
 
@@ -61,14 +83,18 @@ public class LoginActivity extends ToolbarActivity {
 		mLoginPassword.setHint(getString(R.string.password));
 
 		User user = SignInApp.getInstance().getRememberUser();
-		if (mLoginAccount.getEditText() != null)
-			mLoginAccount.getEditText().setText(user.getAccount());
-		if (mLoginPassword.getEditText() != null)
-			mLoginPassword.getEditText().setText(user.getPassword());
-		if (user.getIdentity() == User.IDENTITY_STUDENT)
+		if (user != null) {
+			if (mLoginAccount.getEditText() != null) {
+				mLoginAccount.getEditText().setText(user.getAccount());
+			}
+			if (mLoginPassword.getEditText() != null)
+				mLoginPassword.getEditText().setText(user.getPassword());
+			if (user.getIdentity() == User.IDENTITY_STUDENT)
+				((RadioButton) mLoginIdentityWrapper.getChildAt(1)).setChecked(true);
+			else
+				((RadioButton) mLoginIdentityWrapper.getChildAt(0)).setChecked(true);
+		} else
 			((RadioButton) mLoginIdentityWrapper.getChildAt(1)).setChecked(true);
-		else
-			((RadioButton) mLoginIdentityWrapper.getChildAt(0)).setChecked(true);
 
 		mLoginPassword.getEditText().setOnEditorActionListener(new TextView.OnEditorActionListener() {
 			@Override
@@ -144,8 +170,7 @@ public class LoginActivity extends ToolbarActivity {
 						JniMethods.getJniKey());
 				methods.setValueKey(value);
 				startActivity(new Intent(this, StdMainActivity.class));
-			}
-			else {
+			} else {
 				startActivity(new Intent(this, TchMainActivity.class));
 			}
 			finish();

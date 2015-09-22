@@ -2,6 +2,8 @@ package com.rdc.signin.utils;
 
 import android.util.Log;
 
+import com.rdc.signin.app.SignInApp;
+
 import org.apache.commons.codec.binary.RDCBase64;
 
 import javax.crypto.Cipher;
@@ -75,7 +77,8 @@ public class JniMethods {
 			input = new String(RDCBase64.decodeBase64(input));
 			Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
 			cipher.init(Cipher.DECRYPT_MODE, skey);
-			Log.e("key", key);
+			if (SignInApp.DEBUG)
+				Log.d("key", key);
 			// output = cipher.doFinal(Base64.decode(input,Base64.URL_SAFE));
 			output = cipher.doFinal(RDCBase64.decodeBase64(input));
 		} catch (Exception e) {

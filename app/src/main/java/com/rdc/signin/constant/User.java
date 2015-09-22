@@ -1,9 +1,16 @@
 package com.rdc.signin.constant;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+
 /**
  * Created by seasonyuu on 15/9/17.
  */
-public class User {
+public class User implements Serializable {
 	public static final int IDENTITY_STUDENT = 0;
 	public static final int IDENTITY_TEACHER = 1;
 
@@ -116,5 +123,46 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	/**
+	 * 序列化对象
+	 *
+	 * @param user
+	 * @return
+	 * @throws IOException
+	 */
+	public static String serialize(User user) throws IOException {
+		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+		ObjectOutputStream objectOutputStream = new ObjectOutputStream(
+				byteArrayOutputStream);
+		objectOutputStream.writeObject(user);
+		String serStr = byteArrayOutputStream.toString("ISO-8859-1");
+		serStr = java.net.URLEncoder.encode(serStr, "UTF-8");
+		objectOutputStream.close();
+		byteArrayOutputStream.close();
+		return serStr;
+	}
+
+	/**
+	 * 反序列化对象
+	 *
+	 * @param str
+	 * @return
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
+	public static User deSerialization(String str) throws IOException,
+			ClassNotFoundException {
+		String redStr = java.net.URLDecoder.decode(str, "UTF-8");
+		ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(
+				redStr.getBytes("ISO-8859-1"));
+		ObjectInputStream objectInputStream = new ObjectInputStream(
+				byteArrayInputStream);
+		User user = (User) objectInputStream.readObject();
+		objectInputStream.close();
+		byteArrayInputStream.close();
+		return user;
+
 	}
 }

@@ -2,6 +2,7 @@ package com.rdc.signin.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Parcelable;
@@ -41,6 +42,7 @@ public class ClassListDBHelper extends SQLiteOpenHelper {
 	private static final String TEACHER_NAME = "teacherName";
 	private static final String REST = "rest";
 	private static final String MAC = "mac";
+	private static final String LOC = "loc";
 	private static final String SIGN_TIMES = "signTimes";
 	private static final String SUM = "sum";
 
@@ -55,10 +57,11 @@ public class ClassListDBHelper extends SQLiteOpenHelper {
 						+ "_id integer primary key autoincrement,"
 						+ CLASS_ID + " text,"
 						+ CLASS_NAME + " text,"
-						+ ACCOUNT + "varchar(10),"
+						+ ACCOUNT + " varchar(10),"
 						+ TIME + " text,"
 						+ HOUR + " varchar(4),"
 						+ ABOUT + " text,"
+						+ LOC + " text,"
 						+ WEEKS + " text,"
 						+ TEACHER_NAME + " text,"
 						+ REST + " varchar(4),"
@@ -73,6 +76,9 @@ public class ClassListDBHelper extends SQLiteOpenHelper {
 		if (SignInApp.user.getIdentity() == User.IDENTITY_STUDENT) {
 			for (Parcelable data : list) {
 				StdClass stdClass = (StdClass) data;
+
+				db.delete(TABLE_NAME,CLASS_ID +" = ?",new String[]{stdClass.getClassId()});
+
 				ContentValues values = new ContentValues();
 				values.put(ACCOUNT, SignInApp.user.getAccount());
 				values.put(CLASS_ID, stdClass.getClassId());
@@ -84,13 +90,16 @@ public class ClassListDBHelper extends SQLiteOpenHelper {
 				values.put(TEACHER_NAME, stdClass.getTeacherName());
 				values.put(MAC, stdClass.getMac());
 				values.put(REST, stdClass.getRest());
-				values.put(SIGN_TIMES, stdClass.getSignTimes());;
-				values.put(SUM,stdClass.getSum());
+				values.put(SIGN_TIMES, stdClass.getSignTimes());
+				values.put(SUM, stdClass.getSum());
 				db.insert(TABLE_NAME, null, values);
 			}
 		} else {
 			for (Parcelable data : list) {
 				TchClass tchClass = (TchClass) data;
+
+				db.delete(TABLE_NAME,CLASS_ID+" = ?",new String[]{tchClass.getId()});
+
 				ContentValues values = new ContentValues();
 				values.put(ACCOUNT, SignInApp.user.getAccount());
 				values.put(CLASS_ID, tchClass.getId());
@@ -99,11 +108,49 @@ public class ClassListDBHelper extends SQLiteOpenHelper {
 				values.put(HOUR, tchClass.getHour());
 				values.put(ABOUT, tchClass.getAbout());
 				values.put(WEEKS, tchClass.getWeeks());
-				values.put(SUM,tchClass.getSum());
+				values.put(SUM, tchClass.getSum());
+				values.put(LOC, tchClass.getLoc());
 				db.insert(TABLE_NAME, null, values);
 			}
 		}
 
+	}
+
+	public ArrayList<Parcelable> readClassList(SQLiteDatabase db) {
+		ArrayList<Parcelable> list = new ArrayList<>();
+		Cursor cursor = db.query(
+				TABLE_NAME, null, "account = ?", new String[]{SignInApp.user.getAccount()}, null, null, null);
+		while (cursor.moveToNext()) {
+			if (SignInApp.user.getIdentity() == User.IDENTITY_STUDENT) {
+				StdClass stdClass = new StdClass();
+				stdClass.setClassId(cursor.getString(cursor.getColumnIndex(CLASS_ID)));
+				stdClass.setClassName(cursor.getString(cursor.getColumnIndex(CLASS_NAME)));
+				stdClass.setTime(cursor.getString(cursor.getColumnIndex(TIME)));
+				stdClass.setHour(cursor.getString(cursor.getColumnIndex(HOUR)));
+				stdClass.setAbout(cursor.getString(cursor.getColumnIndex(ABOUT)));
+				stdClass.setWeeks(cursor.getString(cursor.getColumnIndex(WEEKS)));
+				stdClass.setTeacherName(cursor.getString(cursor.getColumnIndex(TEACHER_NAME)));
+				stdClass.setMac(cursor.getString(cursor.getColumnIndex(MAC)));
+				stdClass.setRest(cursor.getString(cursor.getColumnIndex(REST)));
+				stdClass.setSignTimes(cursor.getString(cursor.getColumnIndex(SIGN_TIMES)));
+				stdClass.setSum(cursor.getString(cursor.getColumnIndex(SUM)));
+
+				list.add(stdClass);
+			} else {
+				TchClass tchClass = new TchClass();
+				tchClass.setName(cursor.getString(cursor.getColumnIndex(CLASS_NAME)));
+				tchClass.setId(cursor.getString(cursor.getColumnIndex(CLASS_ID)));
+				tchClass.setTime(cursor.getString(cursor.getColumnIndex(TIME)));
+				tchClass.setHour(cursor.getString(cursor.getColumnIndex(HOUR)));
+				tchClass.setAbout(cursor.getString(cursor.getColumnIndex(ABOUT)));
+				tchClass.setSum(cursor.getString(cursor.getColumnIndex(SUM)));
+				tchClass.setLoc(cursor.getString(cursor.getColumnIndex(LOC)));
+				tchClass.setWeeks(cursor.getString(cursor.getColumnIndex(WEEKS)));
+
+				list.add(tchClass);
+			}
+		}
+		return list;
 	}
 
 	@Override

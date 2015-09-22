@@ -1,12 +1,14 @@
 package com.rdc.signin.ui.teacher;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
 import com.rdc.signin.R;
 import com.rdc.signin.app.SignInApp;
+import com.rdc.signin.database.ClassListDBHelper;
 import com.rdc.signin.net.common.GetClassList;
 import com.rdc.signin.net.control.ConnectListener;
 import com.rdc.signin.ui.common.AbsMainActivity;
@@ -38,6 +40,13 @@ public class TchMainActivity extends AbsMainActivity implements View.OnClickList
 	protected void initRecyclerView(RecyclerView recyclerView) {
 		adapter = new ClassListAdapter(this);
 		recyclerView.setAdapter(adapter);
+
+		ClassListDBHelper helper = new ClassListDBHelper(this);
+		SQLiteDatabase db = helper.getReadableDatabase();
+		adapter.setClassList(helper.readClassList(db));
+		adapter.notifyDataSetChanged();
+		if (adapter.getItemCount() == 0)
+			onRefresh();
 	}
 
 	@Override
@@ -58,14 +67,17 @@ public class TchMainActivity extends AbsMainActivity implements View.OnClickList
 	public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.nav_exit_tch:
-				onBackPressed();
+				finish();
 				break;
 			case R.id.nav_message_tch:
 			case R.id.nav_result_tch:
 			case R.id.nav_settings_tch:
 			case R.id.nav_switch_account_tch:
-				onBackPressed();
-				startActivity(new Intent(this, LoginActivity.class));
+				Intent login = new Intent(this, LoginActivity.class);
+				login.putExtra("switch_user", true);
+				startActivity(login);
+				saveClassList(adapter.getClassList());
+				finish();
 				break;
 		}
 	}

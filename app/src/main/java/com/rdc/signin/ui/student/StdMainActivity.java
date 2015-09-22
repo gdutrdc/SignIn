@@ -42,4 +42,10 @@ public class StdMainActivity extends AbsMainActivity {
 		View view = View.inflate(this, R.layout.drawer_std, null); // just for test
 		return view;
 	}
+
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+		saveClassList(adapter.getClassList());
+	}
 }
