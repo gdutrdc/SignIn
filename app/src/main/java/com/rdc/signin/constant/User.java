@@ -18,6 +18,15 @@ public class User {
 	private String token;
 	private String password;
 	private String mac;
+	private String value;
+
+	public String getValue() {
+		return value;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
+	}
 
 	public int getIdentity() {
 		return identity;

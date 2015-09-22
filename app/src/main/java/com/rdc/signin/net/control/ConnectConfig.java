@@ -25,6 +25,7 @@ public class ConnectConfig {
 		public static final String RESPONSE_EMAIL = "email";
 		public static final String RESPONSE_TEL = "tel";
 		public static final String RESPONSE_MAC = "mac";
+		public static final String RESPONSE_VALUE = "value";
 
 	}
 

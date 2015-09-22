@@ -1,7 +1,9 @@
 package com.rdc.signin.ui.common;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -14,8 +16,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.rdc.signin.R;
+import com.rdc.signin.database.ClassListDBHelper;
 import com.rdc.signin.ui.widget.DividerItemDecoration;
 import com.rdc.signin.utils.UIUtils;
+
+import java.util.ArrayList;
 
 /**
  * Created by seasonyuu on 15/9/20.
@@ -70,5 +75,20 @@ public abstract class AbsMainActivity extends ToolbarActivity {
 			drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 			drawerLayout.getChildAt(drawerLayout.getChildCount() - 1).setClickable(false);
 		}
+	}
+
+	@Override
+	public void onBackPressed() {
+		if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+			drawerLayout.closeDrawer(GravityCompat.START);
+		} else {
+			super.onBackPressed();
+		}
+	}
+
+	protected void saveClassList(ArrayList<Parcelable> list) {
+		ClassListDBHelper helper = new ClassListDBHelper(this);
+		SQLiteDatabase db = helper.getWritableDatabase();
+		helper.writeClassList(db, list);
 	}
 }

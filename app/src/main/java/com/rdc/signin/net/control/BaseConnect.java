@@ -80,8 +80,8 @@ public abstract class BaseConnect {
 			};
 			NetworkControl.getInstance().addRequest(request, null);
 		} catch (IOException e) {
-			e.printStackTrace();
 			onResult(false, e.getMessage(), null);
+			e.printStackTrace();
 		}
 	}
 

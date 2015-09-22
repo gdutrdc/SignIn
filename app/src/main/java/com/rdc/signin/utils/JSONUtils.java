@@ -48,8 +48,10 @@ public class JSONUtils {
 			user.setTel(jsonObject.getString(ConnectConfig.Login.RESPONSE_TEL));
 			user.setEmail(jsonObject.getString(ConnectConfig.Login.RESPONSE_EMAIL));
 			user.setMac(jsonObject.getString(ConnectConfig.Login.RESPONSE_MAC));
-			if (isStudent)
+			if (isStudent) {
 				user.setMajor(jsonObject.getString(ConnectConfig.Login.RESPONSE_MAJOR));
+				user.setValue(wrapper.getString(ConnectConfig.Login.RESPONSE_VALUE));
+			}
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

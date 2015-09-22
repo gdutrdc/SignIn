@@ -23,6 +23,7 @@ import com.rdc.signin.ui.student.StdMainActivity;
 import com.rdc.signin.ui.teacher.TchMainActivity;
 import com.rdc.signin.utils.DialogUtils;
 import com.rdc.signin.utils.JSONUtils;
+import com.rdc.signin.utils.JniMethods;
 import com.rdc.signin.utils.KeyboardUtils;
 import com.rdc.signin.utils.UIUtils;
 import com.rdc.signin.utils.WifiController;
@@ -136,10 +137,17 @@ public class LoginActivity extends ToolbarActivity {
 		} else if (!user.getMac().equals(mac)) {
 			DialogUtils.showWaringDialog(this, "该设备不是您所绑定的设备，如果有疑问请与管理员联系");
 		} else {
-			if (user.getIdentity() == User.IDENTITY_STUDENT)
+			if (user.getIdentity() == User.IDENTITY_STUDENT) {
+				String value = user.getValue();
+				JniMethods methods = JniMethods.getInstance();
+				value = methods.decrypt(value,
+						JniMethods.getJniKey());
+				methods.setValueKey(value);
 				startActivity(new Intent(this, StdMainActivity.class));
-			else
+			}
+			else {
 				startActivity(new Intent(this, TchMainActivity.class));
+			}
 			finish();
 		}
 

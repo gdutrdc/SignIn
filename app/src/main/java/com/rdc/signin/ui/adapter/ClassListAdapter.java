@@ -1,4 +1,4 @@
-package com.rdc.signin.ui.teacher.adapter;
+package com.rdc.signin.ui.adapter;
 
 import android.content.Context;
 import android.os.Parcelable;
@@ -33,6 +33,10 @@ public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.Clas
 		this.list = list;
 	}
 
+	public ArrayList<Parcelable> getClassList() {
+		return list;
+	}
+
 	@Override
 	public ClassListAdapter.ClassViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		ClassViewHolder holder;
@@ -50,7 +54,7 @@ public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.Clas
 		if (SignInApp.user.getIdentity() == User.IDENTITY_STUDENT) {
 			StdClass stdClass = (StdClass) list.get(position);
 			holder.tvName.setText(stdClass.getClassName());
-			holder.tvTeacher.setText(stdClass.getTeacherName());
+			holder.tvTeacher.setText(stdClass.getTeacherName() + " 老师");
 			holder.tvTime.setText(stdClass.getTime());
 		} else {
 			TchClass tchClass = (TchClass) list.get(position);

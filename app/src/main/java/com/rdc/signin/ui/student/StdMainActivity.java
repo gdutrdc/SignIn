@@ -7,7 +7,7 @@ import com.rdc.signin.R;
 import com.rdc.signin.net.common.GetClassList;
 import com.rdc.signin.net.control.ConnectListener;
 import com.rdc.signin.ui.common.AbsMainActivity;
-import com.rdc.signin.ui.teacher.adapter.ClassListAdapter;
+import com.rdc.signin.ui.adapter.ClassListAdapter;
 import com.rdc.signin.utils.JSONUtils;
 
 /**
