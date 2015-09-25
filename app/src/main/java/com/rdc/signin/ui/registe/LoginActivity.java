@@ -144,9 +144,6 @@ public class LoginActivity extends ToolbarActivity {
 					User user = JSONUtils.getUser(response);
 					user.setPassword(mLoginPassword.getEditText().getText().toString());
 
-					SignInApp.getInstance().rememberUser(user);
-					SignInApp.user = user;
-
 					readUser(user);
 				} else {
 					DialogUtils.showWaringDialog(LoginActivity.this, reason);
@@ -158,11 +155,15 @@ public class LoginActivity extends ToolbarActivity {
 	private void readUser(User user) {
 		String mac = new WifiController(this).getLocalMacAddress();
 		if (user.getMac() == null || user.getMac().equals("null")) {
-			startActivity(new Intent(this, BindMacActivity.class));
+			Intent intent = new Intent(this,BindMacActivity.class);
+			intent.putExtra("user",user);
+			startActivity(intent);
 			finish();
 		} else if (!user.getMac().equals(mac)) {
 			DialogUtils.showWaringDialog(this, "该设备不是您所绑定的设备，如果有疑问请与管理员联系");
 		} else {
+			SignInApp.getInstance().rememberUser(user);
+			SignInApp.user = user;
 			if (user.getIdentity() == User.IDENTITY_STUDENT) {
 				String value = user.getValue();
 				JniMethods methods = JniMethods.getInstance();
