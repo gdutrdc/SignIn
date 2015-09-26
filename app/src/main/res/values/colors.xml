@@ -7,7 +7,7 @@
 
     <color name="nav_drawer_row_item_unselected">@android:color/transparent</color>
     <color name="nav_drawer_row_item_selected">#2a000000</color>
-    <color name="nav_drawer_row_item_pressed">#4b000000</color>
+    <color name="nav_drawer_row_item_pressed">#2a000000</color>
 
     <color name="shadow_end_color">@android:color/transparent</color>
     <color name="shadow_center_color">#14000000</color>
