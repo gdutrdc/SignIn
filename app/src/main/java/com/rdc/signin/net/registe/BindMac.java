@@ -7,6 +7,7 @@ import com.rdc.signin.net.control.BaseConnect;
 import com.rdc.signin.net.control.ConnectConfig;
 import com.rdc.signin.net.control.ConnectListener;
 import com.rdc.signin.utils.JSONUtils;
+import com.rdc.signin.utils.WifiController;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,7 +39,8 @@ public class BindMac extends BaseConnect {
 	protected Map<String, String> getRequestParams() {
 		HashMap<String, String> params = new HashMap<>();
 		params.put(ConnectConfig.TOKEN, user.getToken());
-		params.put(ConnectConfig.BindMac.REQUEST_MAC, user.getMac());
+		params.put(ConnectConfig.BindMac.REQUEST_MAC,
+				new WifiController(SignInApp.getInstance().getApplicationContext()).getLocalMacAddress());
 		params.put(ConnectConfig.BindMac.REQUEST_CHANNEL, SignInApp.getInstance().getChannelId());
 		return params;
 	}

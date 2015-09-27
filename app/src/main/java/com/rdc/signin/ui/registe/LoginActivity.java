@@ -53,8 +53,7 @@ public class LoginActivity extends ToolbarActivity {
 					SignInApp.user = user;
 					if (user.getIdentity() == User.IDENTITY_STUDENT) {
 						startActivity(new Intent(this, StdMainActivity.class));
-					}
-					else {
+					} else {
 						startActivity(new Intent(this, TchMainActivity.class));
 					}
 					finish();
@@ -155,8 +154,9 @@ public class LoginActivity extends ToolbarActivity {
 	private void readUser(User user) {
 		String mac = new WifiController(this).getLocalMacAddress();
 		if (user.getMac() == null || user.getMac().equals("null")) {
-			Intent intent = new Intent(this,BindMacActivity.class);
-			intent.putExtra("user",user);
+			Intent intent = new Intent(this, BindMacActivity.class);
+			SignInApp.user = user;
+			intent.putExtra("user", user);
 			startActivity(intent);
 			finish();
 		} else if (!user.getMac().equals(mac)) {

@@ -1,5 +1,6 @@
 package com.rdc.signin.ui.registe;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -11,10 +12,11 @@ import com.rdc.signin.constant.User;
 import com.rdc.signin.net.control.ConnectListener;
 import com.rdc.signin.net.registe.BindMac;
 import com.rdc.signin.ui.common.ToolbarActivity;
+import com.rdc.signin.ui.student.StdMainActivity;
+import com.rdc.signin.ui.teacher.TchMainActivity;
 import com.rdc.signin.utils.DialogUtils;
+import com.rdc.signin.utils.JniMethods;
 import com.rdc.signin.utils.WifiController;
-
-import java.io.IOException;
 
 /**
  * Created by seasonyuu on 15/9/20.
@@ -27,13 +29,7 @@ public class BindMacActivity extends ToolbarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_bind_mac);
 
-		try {
-			user = User.deSerialization(getIntent().getStringExtra("user"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
+		user = (User) getIntent().getSerializableExtra("user");
 
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 	}
@@ -52,6 +48,22 @@ public class BindMacActivity extends ToolbarActivity {
 						user.setMac(new WifiController(BindMacActivity.this).getLocalMacAddress());
 						SignInApp.getInstance().rememberUser(user);
 						SignInApp.user = user;
+						DialogUtils.showTipsDialog(BindMacActivity.this, "绑定成功", new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								if (user.getIdentity() == User.IDENTITY_STUDENT) {
+									String value = user.getValue();
+									JniMethods methods = JniMethods.getInstance();
+									value = methods.decrypt(value,
+											JniMethods.getJniKey());
+									methods.setValueKey(value);
+									startActivity(new Intent(BindMacActivity.this, StdMainActivity.class));
+								} else {
+									startActivity(new Intent(BindMacActivity.this, TchMainActivity.class));
+								}
+								finish();
+							}
+						});
 					}
 				} else {
 					DialogUtils.showWaringDialog(BindMacActivity.this, reason);
@@ -67,5 +79,11 @@ public class BindMacActivity extends ToolbarActivity {
 			onBackPressed();
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void onBackPressed() {
+		startActivity(new Intent(this, LoginActivity.class));
+		super.onBackPressed();
 	}
 }

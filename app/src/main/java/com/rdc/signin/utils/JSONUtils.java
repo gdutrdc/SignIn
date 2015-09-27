@@ -39,6 +39,7 @@ public class JSONUtils {
 			isStudent = wrapper.getString(ConnectConfig.ACT).equals("student_login");
 
 			user = new User();
+			user.setIdentity(isStudent?User.IDENTITY_STUDENT:User.IDENTITY_TEACHER);
 			user.setToken(wrapper.getString(ConnectConfig.TOKEN));
 			user.setIdentity(isStudent ? User.IDENTITY_STUDENT : User.IDENTITY_TEACHER);
 			user.setAccount(jsonObject.getString(ConnectConfig.Login.REQUEST_ACCOUNT));
