@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="FloatingActionButton">
+        <attr name="backgroundColor" format="color"/>
+        <attr name="fab_size">
+            <enum name="mini" value="0"/>
+            <enum name="normal" value="1"/>
+        </attr>
+        <attr name="src" format="reference"/>
+    </declare-styleable>
+</resources>

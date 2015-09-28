@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:attr/windowBackground">
+
+    <com.rdc.signin.ui.widget.StickyScrollView
+        android:id="@+id/class_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar">
+
+        <LinearLayout
+            android:id="@+id/class_info_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="800dp"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/logo"/>
+        </LinearLayout>
+    </com.rdc.signin.ui.widget.StickyScrollView>
+
+    <TextView
+        android:id="@+id/class_title"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="?attr/colorPrimary"
+        android:gravity="bottom"
+        android:layout_below="@+id/status_bar"
+        android:paddingLeft="56dp"
+        android:paddingBottom="16dp"
+        android:paddingRight="56dp"
+        android:text="Title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title.Inverse"/>
+
+    <include layout="@layout/status_bar"/>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_below="@+id/status_bar"
+        android:background="@color/transparent"
+        app:layout_collapseMode="pin"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+
+    <com.rdc.signin.ui.widget.FloatingActionButton
+        android:id="@+id/class_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/class_title"
+        android:layout_marginTop="-50dp"
+        app:src="@drawable/small_icon"/>
+
+</RelativeLayout>

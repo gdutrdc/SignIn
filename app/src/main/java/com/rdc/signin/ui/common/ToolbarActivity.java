@@ -42,4 +42,8 @@ public class ToolbarActivity extends AbsActivity {
 			statusBar.setLayoutParams(params);
 		}
 	}
+
+	public Toolbar getToolbar(){
+		return toolbar;
+	}
 }

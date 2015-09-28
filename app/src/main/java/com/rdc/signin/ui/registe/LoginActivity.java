@@ -137,7 +137,6 @@ public class LoginActivity extends ToolbarActivity {
 			@Override
 			public void onConnect(boolean isConnect, String reason, String response) {
 				if (isConnect) {
-					Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
 					DialogUtils.dismissAllDialog();
 
 					User user = JSONUtils.getUser(response);
@@ -162,6 +161,7 @@ public class LoginActivity extends ToolbarActivity {
 		} else if (!user.getMac().equals(mac)) {
 			DialogUtils.showWaringDialog(this, "该设备不是您所绑定的设备，如果有疑问请与管理员联系");
 		} else {
+			Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
 			SignInApp.getInstance().rememberUser(user);
 			SignInApp.user = user;
 			if (user.getIdentity() == User.IDENTITY_STUDENT) {

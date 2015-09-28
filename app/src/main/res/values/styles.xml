@@ -8,4 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="AppTheme.FABStyle">
+        <item name="borderWidth">0dp</item>
+    </style>
+
 </resources>
