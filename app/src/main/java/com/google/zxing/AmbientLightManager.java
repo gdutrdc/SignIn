@@ -1,4 +1,4 @@
-package com.rdc.signin.zxing;
+package com.google.zxing;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -8,8 +8,8 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.preference.PreferenceManager;
 
-import com.rdc.signin.zxing.camera.CameraManager;
-import com.rdc.signin.zxing.camera.FrontLightMode;
+import com.google.zxing.camera.CameraManager;
+import com.google.zxing.camera.FrontLightMode;
 
 
 public final class AmbientLightManager implements SensorEventListener {

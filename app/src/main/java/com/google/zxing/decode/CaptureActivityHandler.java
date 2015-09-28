@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.rdc.signin.zxing.decode;
+package com.google.zxing.decode;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
@@ -35,8 +35,8 @@ import com.google.zxing.DecodeHintType;
 import com.google.zxing.Result;
 import com.rdc.signin.R;
 import com.rdc.signin.ui.teacher.TchScanActivity;
-import com.rdc.signin.zxing.camera.CameraManager;
-import com.rdc.signin.zxing.widget.ViewfinderResultPointCallback;
+import com.google.zxing.camera.CameraManager;
+import com.google.zxing.widget.ViewfinderResultPointCallback;
 
 import java.util.Collection;
 import java.util.Map;

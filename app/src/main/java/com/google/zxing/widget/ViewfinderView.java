@@ -1,4 +1,4 @@
-package com.rdc.signin.zxing.widget;
+package com.google.zxing.widget;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -13,7 +13,7 @@ import android.view.View;
 
 import com.google.zxing.ResultPoint;
 import com.rdc.signin.R;
-import com.rdc.signin.zxing.camera.CameraManager;
+import com.google.zxing.camera.CameraManager;
 
 import java.util.ArrayList;
 import java.util.List;

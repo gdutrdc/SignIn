@@ -1,4 +1,4 @@
-package com.rdc.signin.zxing.camera;
+package com.google.zxing.camera;
 
 import android.hardware.Camera;
 

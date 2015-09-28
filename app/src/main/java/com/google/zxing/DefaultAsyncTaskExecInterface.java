@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.rdc.signin.zxing;
+package com.google.zxing;
 
 import android.os.AsyncTask;
 

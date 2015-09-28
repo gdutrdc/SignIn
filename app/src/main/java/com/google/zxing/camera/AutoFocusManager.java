@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-package com.rdc.signin.zxing.camera;
+package com.google.zxing.camera;
 
 import android.content.Context;
 import android.hardware.Camera;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.rdc.signin.zxing.AsyncTaskExecInterface;
-import com.rdc.signin.zxing.AsyncTaskExecManager;
+import com.google.zxing.AsyncTaskExecInterface;
+import com.google.zxing.AsyncTaskExecManager;
 
 import java.util.ArrayList;
 import java.util.Collection;

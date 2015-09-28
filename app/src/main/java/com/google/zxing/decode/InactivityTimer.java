@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.rdc.signin.zxing.decode;
+package com.google.zxing.decode;
 
 
 import android.app.Activity;
@@ -26,8 +26,8 @@ import android.os.AsyncTask;
 import android.os.BatteryManager;
 import android.util.Log;
 
-import com.rdc.signin.zxing.AsyncTaskExecInterface;
-import com.rdc.signin.zxing.AsyncTaskExecManager;
+import com.google.zxing.AsyncTaskExecInterface;
+import com.google.zxing.AsyncTaskExecManager;
 
 
 /**

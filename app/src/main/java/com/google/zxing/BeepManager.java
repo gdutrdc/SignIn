@@ -1,4 +1,4 @@
-package com.rdc.signin.zxing;
+package com.google.zxing;
 
 import android.app.Activity;
 import android.content.Context;

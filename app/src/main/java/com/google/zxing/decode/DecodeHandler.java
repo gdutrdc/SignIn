@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.rdc.signin.zxing.decode;
+package com.google.zxing.decode;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;

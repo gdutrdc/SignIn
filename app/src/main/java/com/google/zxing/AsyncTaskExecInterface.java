@@ -14,20 +14,12 @@
  * limitations under the License.
  */
 
-package com.rdc.signin.zxing.camera;
+package com.google.zxing;
 
+import android.os.AsyncTask;
 
-import com.rdc.signin.zxing.PlatformSupportManager;
+public interface AsyncTaskExecInterface {
 
-/**
- * Selects an appropriate implementation of {@link OpenCameraInterface} based on the device's
- * API level.
- */
-public final class OpenCameraManager extends PlatformSupportManager<OpenCameraInterface> {
-
-  public OpenCameraManager() {
-    super(OpenCameraInterface.class, new DefaultOpenCameraInterface());
-    addImplementationClass(9, "com.google.zxing.client.android.camera.open.GingerbreadOpenCameraInterface");
-  }
+  <T> void execute(AsyncTask<T,?,?> task, T... args);
 
 }

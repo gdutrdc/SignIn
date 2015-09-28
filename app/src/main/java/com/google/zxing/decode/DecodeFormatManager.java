@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.rdc.signin.zxing.decode;
+package com.google.zxing.decode;
 
 import android.content.Intent;
 import android.net.Uri;

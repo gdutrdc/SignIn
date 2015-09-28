@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.rdc.signin.zxing.camera;
+package com.google.zxing.camera;
 
 import android.os.IBinder;
 import android.util.Log;

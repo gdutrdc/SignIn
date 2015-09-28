@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2009 ZXing authors
+ * Copyright (C) 2012 ZXing authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,22 +14,20 @@
  * limitations under the License.
  */
 
-package com.rdc.signin.zxing.widget;
+package com.google.zxing.camera;
 
-import com.google.zxing.ResultPoint;
-import com.google.zxing.ResultPointCallback;
 
-public final class ViewfinderResultPointCallback implements ResultPointCallback {
+import com.google.zxing.PlatformSupportManager;
 
-  private final ViewfinderView viewfinderView;
+/**
+ * Selects an appropriate implementation of {@link OpenCameraInterface} based on the device's
+ * API level.
+ */
+public final class OpenCameraManager extends PlatformSupportManager<OpenCameraInterface> {
 
-  public ViewfinderResultPointCallback(ViewfinderView viewfinderView) {
-    this.viewfinderView = viewfinderView;
-  }
-
-  @Override
-  public void foundPossibleResultPoint(ResultPoint point) {
-    viewfinderView.addPossibleResultPoint(point);
+  public OpenCameraManager() {
+    super(OpenCameraInterface.class, new DefaultOpenCameraInterface());
+    addImplementationClass(9, "com.google.zxing.client.android.camera.open.GingerbreadOpenCameraInterface");
   }
 
 }
