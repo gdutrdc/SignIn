@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:cardCornerRadius="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                style="@style/ClassInfoItem">
+
+                <TextView
+                    style="@style/ClassInfoItemDescription"
+                    android:text="教师"/>
+
+                <TextView
+                    android:id="@+id/std_class_teacher"
+                    style="@style/ClassInfoItemContent"/>
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/ClassInfoItem">
+
+                <TextView
+                    style="@style/ClassInfoItemDescription"
+                    android:text="教室"/>
+
+                <TextView
+                    android:id="@+id/std_class_loc"
+                    style="@style/ClassInfoItemContent"/>
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/ClassInfoItem">
+
+                <TextView
+                    style="@style/ClassInfoItemDescription"
+                    android:text="上课时间"/>
+
+                <TextView
+                    android:id="@+id/std_class_time"
+                    style="@style/ClassInfoItemContent"/>
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/ClassInfoItem">
+
+                <TextView
+                    style="@style/ClassInfoItemDescription"
+                    android:text="总课时"/>
+
+                <TextView
+                    android:id="@+id/std_class_hour"
+                    style="@style/ClassInfoItemContent"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                style="@style/ClassInfoItem">
+
+                <TextView
+                    style="@style/ClassInfoItemDescription"
+                    android:text="课程描述"/>
+
+                <TextView
+                    android:id="@+id/std_class_about"
+                    style="@style/ClassInfoItemContent"/>
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        app:cardCornerRadius="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                style="@style/ClassInfoItem">
+
+                <TextView
+                    style="@style/ClassInfoItemDescription"
+                    android:text="课程节数"/>
+
+                <TextView
+                    android:id="@+id/std_class_sum"
+                    style="@style/ClassInfoItemContent"/>
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/ClassInfoItem">
+
+                <TextView
+                    style="@style/ClassInfoItemDescription"
+                    android:text="签到次数"/>
+
+                <TextView
+                    android:id="@+id/std_class_signtimes"
+                    style="@style/ClassInfoItemContent"/>
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/ClassInfoItem">
+
+                <TextView
+                    style="@style/ClassInfoItemDescription"
+                    android:text="缺课次数"/>
+
+                <TextView
+                    android:id="@+id/std_class_absence"
+                    style="@style/ClassInfoItemContent"/>
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/ClassInfoItem">
+
+                <TextView
+                    style="@style/ClassInfoItemDescription"
+                    android:text="请假次数"/>
+
+                <TextView
+                    android:id="@+id/std_class_rest"
+                    style="@style/ClassInfoItemContent"/>
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

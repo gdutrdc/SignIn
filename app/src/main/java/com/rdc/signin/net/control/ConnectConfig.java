@@ -4,7 +4,7 @@ package com.rdc.signin.net.control;
  * Created by seasonyuu on 15/9/17.
  */
 public class ConnectConfig {
-	public static final String HOST = "http://rdcjim.duapp.com/Signin_Project/index.php/";
+	public static final String HOST = "http://rdcsignintest.duapp.com/Signin_Project/index.php/";
 
 	public static final String TOKEN = "token";
 	public static final String RESULT = "result";

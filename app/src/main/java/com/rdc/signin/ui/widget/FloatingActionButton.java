@@ -129,7 +129,7 @@ public class FloatingActionButton extends View {
 		this.setMeasuredDimension(d + this.mShadowPadding + this.mShadowPadding, d + this.mShadowPadding + this.mShadowPadding);
 	}
 
-	final int getSizeDimension() {
+	public final int getSizeDimension() {
 		switch (this.mSize) {
 			case SIZE_NORMAL:
 			default:

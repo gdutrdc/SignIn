@@ -85,6 +85,7 @@ public class ClassListDBHelper extends SQLiteOpenHelper {
 				values.put(CLASS_NAME, stdClass.getClassName());
 				values.put(TIME, stdClass.getTime());
 				values.put(HOUR, stdClass.getHour());
+				values.put(LOC,stdClass.getLoc());
 				values.put(ABOUT, stdClass.getAbout());
 				values.put(WEEKS, stdClass.getWeeks());
 				values.put(TEACHER_NAME, stdClass.getTeacherName());
@@ -128,6 +129,7 @@ public class ClassListDBHelper extends SQLiteOpenHelper {
 				stdClass.setTime(cursor.getString(cursor.getColumnIndex(TIME)));
 				stdClass.setHour(cursor.getString(cursor.getColumnIndex(HOUR)));
 				stdClass.setAbout(cursor.getString(cursor.getColumnIndex(ABOUT)));
+				stdClass.setLoc(cursor.getString(cursor.getColumnIndex(LOC)));
 				stdClass.setWeeks(cursor.getString(cursor.getColumnIndex(WEEKS)));
 				stdClass.setTeacherName(cursor.getString(cursor.getColumnIndex(TEACHER_NAME)));
 				stdClass.setMac(cursor.getString(cursor.getColumnIndex(MAC)));

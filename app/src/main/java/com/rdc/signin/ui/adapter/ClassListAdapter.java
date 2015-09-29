@@ -15,6 +15,7 @@ import com.rdc.signin.constant.StdClass;
 import com.rdc.signin.constant.TchClass;
 import com.rdc.signin.constant.User;
 import com.rdc.signin.ui.student.StdClassActivity;
+import com.rdc.signin.ui.teacher.TchClassActivity;
 import com.rdc.signin.utils.UIUtils;
 
 import java.util.ArrayList;
@@ -95,7 +96,7 @@ public class ClassListAdapter extends RecyclerView.Adapter<ClassListAdapter.Clas
 			if (SignInApp.user.getIdentity() == User.IDENTITY_STUDENT)
 				intent.setClass(context, StdClassActivity.class);
 			else {
-
+				intent.setClass(context, TchClassActivity.class);
 			}
 			intent.putExtra("class", list.get(position));
 			context.startActivity(intent);

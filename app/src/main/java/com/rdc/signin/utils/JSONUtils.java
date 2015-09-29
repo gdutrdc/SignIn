@@ -39,7 +39,7 @@ public class JSONUtils {
 			isStudent = wrapper.getString(ConnectConfig.ACT).equals("student_login");
 
 			user = new User();
-			user.setIdentity(isStudent?User.IDENTITY_STUDENT:User.IDENTITY_TEACHER);
+			user.setIdentity(isStudent ? User.IDENTITY_STUDENT : User.IDENTITY_TEACHER);
 			user.setToken(wrapper.getString(ConnectConfig.TOKEN));
 			user.setIdentity(isStudent ? User.IDENTITY_STUDENT : User.IDENTITY_TEACHER);
 			user.setAccount(jsonObject.getString(ConnectConfig.Login.REQUEST_ACCOUNT));
@@ -84,6 +84,7 @@ public class JSONUtils {
 			stdClass.setTime(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_TIME));
 			stdClass.setHour(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_HOUR));
 			stdClass.setAbout(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_ABOUT));
+			stdClass.setLoc(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_LOC));
 			stdClass.setWeeks(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_WEEKS));
 			stdClass.setTeacherName(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_TEACHER_NAME));
 			stdClass.setMac(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_MAC));

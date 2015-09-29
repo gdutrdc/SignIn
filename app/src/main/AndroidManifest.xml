@@ -34,6 +34,7 @@
         <activity android:name=".ui.registe.InfoActivity"/>
         <activity android:name=".ui.registe.BindMacActivity"/>
         <activity android:name=".ui.student.StdClassActivity"/>
+        <activity android:name=".ui.teacher.TchClassActivity"/>
         <activity android:name=".ui.student.StdMainActivity"/>
         <activity android:name=".ui.teacher.TchMainActivity"/>
 

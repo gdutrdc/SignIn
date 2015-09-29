@@ -1,7 +1,9 @@
 package com.rdc.signin.ui.common;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -36,6 +38,8 @@ public abstract class AbsClassActivity extends ToolbarActivity implements Sticky
 
 		initView();
 
+		Parcelable clazz = getIntent().getParcelableExtra("class");
+		handlerClassInfo(clazz);
 	}
 
 	private void initView() {
@@ -58,22 +62,30 @@ public abstract class AbsClassActivity extends ToolbarActivity implements Sticky
 				toolbarHeight = getToolbar().getHeight();
 				statusBarHeight = findViewById(R.id.status_bar).getHeight();
 
+				//初始化ScrollView
+				int padding = (int) UIUtils.convertDpToPixel(16, AbsClassActivity.this);
+				scrollView.getChildAt(0).setPadding(padding,
+						padding / 2 + appBarMaxHeight - toolbarHeight + fab.getSizeDimension() / 2, padding, padding);
+
 				//初始化标题
 				defaultTextSize = tvTitle.getTextSize();
 				defaultTextSize = UIUtils.convertPixelsToDp(defaultTextSize, AbsClassActivity.this);
 				tvTitle.setTextSize(defaultTextSize * 1.5f);
-				tvTitle.setText("课程信息");
 
 				getToolbar().getViewTreeObserver().removeGlobalOnLayoutListener(this);
 			}
 		});
 
-		//初始化ScrollView
-		scrollView.getChildAt(0).setPadding(0, appBarMaxHeight + statusBarHeight, 0, 0);
+		View contentView = createContentView();
+		if (contentView != null)
+			((ViewGroup) scrollView.getChildAt(0)).addView(contentView);
 		scrollView.setVerticalScrollBarEnabled(false);
 		scrollView.setOnScrollChangeListener(this);
 	}
 
+	public void setToolbarTitle(String title) {
+		tvTitle.setText(title);
+	}
 
 	@Override
 	public void onScrollChange(int l, int t, int oldl, int oldt) {
@@ -89,13 +101,15 @@ public abstract class AbsClassActivity extends ToolbarActivity implements Sticky
 			if (tvTitle.getHeight() != toolbarHeight) {
 				params.height = toolbarHeight;
 				tvTitle.setLayoutParams(params);
+				if (fab.isShowing())
+					fab.hide();
 			}
-			if (fab.isShowing())
-				fab.hide();
 		} else {
 			if (t >= 0 && t <=
 					appBarMaxHeight - toolbarHeight) {
-				if (!fab.isShowing())
+				if (changeHeight == toolbarHeight && fab.isShowing())
+					fab.hide();
+				else if (changeHeight > toolbarHeight && !fab.isShowing())
 					fab.show();
 				params.height = changeHeight;
 				tvTitle.setTextSize(
@@ -105,6 +119,9 @@ public abstract class AbsClassActivity extends ToolbarActivity implements Sticky
 		}
 	}
 
-
 	protected abstract void onFABClick(FloatingActionButton fab);
+
+	protected abstract View createContentView();
+
+	protected abstract void handlerClassInfo(Parcelable clazz);
 }

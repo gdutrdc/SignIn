@@ -128,6 +128,7 @@ public class StdClass implements Parcelable {
 		dest.writeString(this.time);
 		dest.writeString(this.hour);
 		dest.writeString(this.about);
+		dest.writeString(this.loc);
 		dest.writeString(this.weeks);
 		dest.writeString(this.teacherName);
 		dest.writeString(this.rest);
@@ -145,6 +146,7 @@ public class StdClass implements Parcelable {
 		this.time = in.readString();
 		this.hour = in.readString();
 		this.about = in.readString();
+		this.loc = in.readString();
 		this.weeks = in.readString();
 		this.teacherName = in.readString();
 		this.rest = in.readString();

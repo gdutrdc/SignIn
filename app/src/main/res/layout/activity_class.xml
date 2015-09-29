@@ -16,26 +16,18 @@
             android:id="@+id/class_info_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="800dp"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/logo"/>
-        </LinearLayout>
+            android:orientation="vertical"/>
     </com.rdc.signin.ui.widget.StickyScrollView>
 
     <TextView
         android:id="@+id/class_title"
         android:layout_width="match_parent"
         android:layout_height="150dp"
+        android:layout_below="@+id/status_bar"
         android:background="?attr/colorPrimary"
         android:gravity="bottom"
-        android:layout_below="@+id/status_bar"
-        android:paddingLeft="56dp"
         android:paddingBottom="16dp"
+        android:paddingLeft="56dp"
         android:paddingRight="56dp"
         android:text="Title"
         android:textAppearance="@style/TextAppearance.AppCompat.Title.Inverse"/>
