@@ -1,10 +1,10 @@
 package com.rdc.signin.ui.teacher;
 
+import android.content.Intent;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.rdc.signin.R;
 import com.rdc.signin.constant.TchClass;
@@ -25,7 +25,9 @@ public class TchClassActivity extends AbsClassActivity {
 
 	@Override
 	protected void onFABClick(FloatingActionButton fab) {
-		Toast.makeText(this, "FAB click", Toast.LENGTH_SHORT).show();
+		Intent intent = new Intent(this,TchScanActivity.class);
+		intent.putExtra("classId",mClass.getId());
+		startActivity(intent);
 	}
 
 	@Override

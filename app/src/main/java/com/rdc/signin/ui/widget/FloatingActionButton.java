@@ -41,7 +41,7 @@ public class FloatingActionButton extends View {
 	private int mShadowPadding;
 
 	private final float SHADOW_SIZE_NORMAL = UIUtils.convertDpToPixel(3, getContext());
-	private final float SHADOW_SIZE_PRESSED = UIUtils.convertDpToPixel(4, getContext());
+	private final float SHADOW_SIZE_PRESSED = UIUtils.convertDpToPixel(6, getContext());
 
 	private static final int SIZE_MINI = 1;
 	private static final int SIZE_NORMAL = 0;
