@@ -1,12 +1,12 @@
 package com.rdc.signin.ui.teacher;
 
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
@@ -20,18 +20,18 @@ import android.view.WindowManager;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.zxing.AmbientLightManager;
 import com.google.zxing.BarcodeFormat;
+import com.google.zxing.BeepManager;
 import com.google.zxing.DecodeHintType;
 import com.google.zxing.Result;
-import com.rdc.signin.R;
-import com.rdc.signin.ui.adapter.TchScanListAdapter;
-import com.google.zxing.AmbientLightManager;
-import com.google.zxing.BeepManager;
 import com.google.zxing.camera.CameraManager;
 import com.google.zxing.decode.CaptureActivityHandler;
 import com.google.zxing.decode.FinishListener;
 import com.google.zxing.decode.InactivityTimer;
 import com.google.zxing.widget.ViewfinderView;
+import com.rdc.signin.R;
+import com.rdc.signin.ui.adapter.TchScanListAdapter;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -75,11 +75,11 @@ public final class TchScanActivity extends AppCompatActivity implements
 	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
 
+		setTheme(android.support.v7.appcompat.R.style.Theme_AppCompat);
 		Window window = getWindow();
 		window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		setContentView(R.layout.activity_tch_scan);
 
-		mTokenMark = getIntent().getStringExtra("token");
 		mClassId = getIntent().getStringExtra("classId");
 
 		findAllViewById();

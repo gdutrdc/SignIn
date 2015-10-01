@@ -56,7 +56,7 @@ public class TchScanListAdapter extends BaseAdapter {
 		ViewHolder vh = null;
 		if (convertView == null) {
 			convertView = LayoutInflater.from(mContext).inflate(
-					R.layout.item_single_line, null);
+					R.layout.item_single_line, parent, false);
 			vh = new ViewHolder();
 			vh.account = (TextView) convertView
 					.findViewById(R.id.tv_title);
@@ -83,7 +83,7 @@ public class TchScanListAdapter extends BaseAdapter {
 			mDatabase = mHelper.getWritableDatabase();
 		}
 		try {
-			insertData(mDatabase, new String[] { mClassId, mDate, account });
+			insertData(mDatabase, new String[]{mClassId, mDate, account});
 			((TchScanActivity) mContext).makeSucceedToast();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -93,7 +93,7 @@ public class TchScanListAdapter extends BaseAdapter {
 	private void getData() {
 		mDatabase = mHelper.getReadableDatabase();
 		Cursor cursor = mDatabase.query("result", null, "classId=? and date=?",
-				new String[] { mClassId, mDate }, null, null, null);
+				new String[]{mClassId, mDate}, null, null, null);
 		int colAccount = cursor.getColumnIndex("account");
 		while (cursor.moveToNext())
 			mAccountList.add(cursor.getString(colAccount));

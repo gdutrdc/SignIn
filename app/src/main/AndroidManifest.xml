@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
     <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER"/>
     <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION"/>
@@ -37,6 +38,7 @@
         <activity android:name=".ui.teacher.TchClassActivity"/>
         <activity android:name=".ui.student.StdMainActivity"/>
         <activity android:name=".ui.teacher.TchMainActivity"/>
+        <activity android:name=".ui.teacher.TchScanActivity"/>
 
 
         <!-- push应用定义消息receiver声明 -->

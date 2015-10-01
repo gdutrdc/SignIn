@@ -2,6 +2,7 @@ package com.rdc.signin.ui.common;
 
 import android.os.Build;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -45,5 +46,15 @@ public class ToolbarActivity extends AbsActivity {
 
 	public Toolbar getToolbar(){
 		return toolbar;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		boolean flag = super.onOptionsItemSelected(item);
+		if(!flag){
+			if(item.getItemId() == android.R.id.home)
+				onBackPressed();
+		}
+		return flag;
 	}
 }
