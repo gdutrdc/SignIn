@@ -1,7 +1,9 @@
 package com.rdc.signin.app;
 
-import android.app.Application;
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.multidex.MultiDex;
+import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
 import com.rdc.signin.constant.User;
@@ -12,7 +14,7 @@ import java.io.IOException;
 /**
  * Created by seasonyuu on 15/9/16.
  */
-public class SignInApp extends Application {
+public class SignInApp extends MultiDexApplication {
 	private final String TAG = SignInApp.class.getSimpleName();
 
 	private static SharedPreferences _preferences;
@@ -27,6 +29,12 @@ public class SignInApp extends Application {
 		application = this;
 		_preferences = getSharedPreferences(getPackageName() + "_preferences", MODE_PRIVATE);
 		NetworkControl.init(this);
+	}
+
+	@Override
+	protected void attachBaseContext(Context base) {
+		super.attachBaseContext(base);
+		MultiDex.install(this);
 	}
 
 	public static SignInApp getInstance() {

@@ -33,10 +33,10 @@ import android.util.Log;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.DecodeHintType;
 import com.google.zxing.Result;
-import com.rdc.signin.R;
-import com.rdc.signin.ui.teacher.TchScanActivity;
 import com.google.zxing.camera.CameraManager;
 import com.google.zxing.widget.ViewfinderResultPointCallback;
+import com.rdc.signin.R;
+import com.rdc.signin.ui.teacher.TchScanActivity;
 
 import java.util.Collection;
 import java.util.Map;

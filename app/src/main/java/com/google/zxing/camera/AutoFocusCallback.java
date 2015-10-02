@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.rdc.registration.util.camera;
+package com.google.zxing.camera;
 
 import android.hardware.Camera;
 import android.os.Handler;
