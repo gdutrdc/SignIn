@@ -6,6 +6,7 @@ import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
+import com.rdc.signin.constant.PreferenceKeys;
 import com.rdc.signin.constant.User;
 import com.rdc.signin.net.control.NetworkControl;
 
@@ -41,11 +42,15 @@ public class SignInApp extends MultiDexApplication {
 		return application;
 	}
 
+	public SharedPreferences getPreferences() {
+		return _preferences;
+	}
+
 	public User getRememberUser() {
-		String s = _preferences.getString("user","");
+		String s = _preferences.getString(PreferenceKeys.USER, "");
 		User user = null;
 		try {
-			user =  User.deSerialization(s);
+			user = User.deSerialization(s);
 		} catch (IOException e) {
 			if (DEBUG) {
 				Log.d(TAG, "user cannot serialize");
@@ -62,7 +67,7 @@ public class SignInApp extends MultiDexApplication {
 	public void rememberUser(User user) {
 		SharedPreferences.Editor editor = _preferences.edit();
 		try {
-			editor.putString("user", User.serialize(user));
+			editor.putString(PreferenceKeys.USER, User.serialize(user));
 		} catch (IOException e) {
 			e.printStackTrace();
 			if (DEBUG)
@@ -73,11 +78,11 @@ public class SignInApp extends MultiDexApplication {
 
 	public void setChannelId(String channelId) {
 		SharedPreferences.Editor editor = _preferences.edit();
-		editor.putString("channelId", channelId);
+		editor.putString(PreferenceKeys.CHANNEL_ID, channelId);
 		editor.commit();
 	}
 
 	public String getChannelId() {
-		return _preferences.getString("channelId", "");
+		return _preferences.getString(PreferenceKeys.CHANNEL_ID, "");
 	}
 }

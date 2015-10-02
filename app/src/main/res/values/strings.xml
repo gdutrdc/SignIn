@@ -15,4 +15,31 @@
 
     <string name="open_drawer">Open Drawer</string>
     <string name="close_drawer">Close Drawer</string>
+
+    <!-- 设置相关 -->
+    <string name="settings">设置</string>
+    <string name="cancel">取消</string>
+    <string name="absence_limit">缺课次数限制</string>
+    <string-array name="std_absence_times_values">
+        <item>0</item>
+        <item>3</item>
+        <item>5</item>
+    </string-array>
+    <string-array name="std_absence_times">
+        <item>从不</item>
+        <item>3</item>
+        <item>5</item>
+    </string-array>
+    <string-array name="tch_absence_percent">
+        <item>从不</item>
+        <item>30%</item>
+        <item>50%</item>
+        <item>70%</item>
+    </string-array>
+    <string-array name="tch_absence_percent_values">
+        <item>0</item>
+        <item>30</item>
+        <item>50</item>
+        <item>70</item>
+    </string-array>
 </resources>

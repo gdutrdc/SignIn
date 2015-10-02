@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- 消息提示 -->
+    <PreferenceCategory
+        android:title="消息提示" >
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="std_message_switch"
+            android:summaryOff="关闭消息提示"
+            android:summaryOn="开启消息提示"
+            android:title="是否开启消息提示" />
+        <CheckBoxPreference
+            android:key="std_email_prompt"
+            android:title="邮箱消息提示" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="std_absence_prompt"
+            android:title="缺课消息提示" />
+
+        <ListPreference
+            android:defaultValue="3"
+            android:dialogTitle="缺课超过该数字则提醒"
+            android:entries="@array/std_absence_times"
+            android:entryValues="@array/std_absence_times_values"
+            android:key="std_absence_limit"
+            android:summary="%s"
+            android:title="缺课次数限制" />
+
+        <CheckBoxPreference
+            android:key="std_sound_prompt"
+            android:title="声音提醒" />
+    </PreferenceCategory>
+    <!-- 反馈 -->
+    <PreferenceCategory android:title="反馈" >
+        <Preference
+            android:key="feedback"
+            android:title="反馈&amp;建议" />
+    </PreferenceCategory>
+    <!-- 关于 -->
+    <PreferenceCategory android:title="关于" >
+        <Preference
+            android:key="developer"
+            android:title="关于开发者" />
+        <Preference
+            android:key="contact"
+            android:title="联系方式" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

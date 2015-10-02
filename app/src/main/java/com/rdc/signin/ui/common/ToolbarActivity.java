@@ -35,6 +35,8 @@ public class ToolbarActivity extends AbsActivity {
 
 		if (toolbar != null) {
 			setSupportActionBar(toolbar);
+			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+			getSupportActionBar().setHomeButtonEnabled(true);
 		}
 
 		if (Build.VERSION.SDK_INT >= 19 && statusBar != null) {

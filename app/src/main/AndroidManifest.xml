@@ -25,20 +25,26 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.registe.LoginActivity"
+            android:name=".ui.register.LoginActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.registe.InfoActivity"/>
-        <activity android:name=".ui.registe.BindMacActivity"/>
+        <activity android:name=".ui.register.InfoActivity"/>
+        <activity android:name=".ui.register.BindMacActivity"/>
         <activity android:name=".ui.student.StdClassActivity"/>
         <activity android:name=".ui.teacher.TchClassActivity"/>
         <activity android:name=".ui.student.StdMainActivity"/>
         <activity android:name=".ui.teacher.TchMainActivity"/>
         <activity android:name=".ui.teacher.TchScanActivity"/>
+        <activity
+            android:name=".ui.teacher.TchSettingsActivity"
+            android:label="@string/settings"/>
+        <activity
+            android:name=".ui.student.StdSettingsActivity"
+            android:label="@string/settings"/>
 
 
         <!-- push应用定义消息receiver声明 -->
