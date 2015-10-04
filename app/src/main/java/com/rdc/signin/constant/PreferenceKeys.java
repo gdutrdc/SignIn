@@ -12,4 +12,10 @@ public class PreferenceKeys {
 	public static final String STUDENT_EMAIL_PROMPT = "std_email_prompt";
 	public static final String STUDENT_ABSENCE_PROMPT = "std_absence_prompt";
 	public static final String STUDENT_SOUND_PROMPT = "std_sound_prompt";
+
+	public static final String TEACHER_SWITCH_MESSAGE = "tch_message_switch";
+	public static final String TEACHER_ABSENCE_PERCENT = "tch_absence_percent";
+	public static final String TEACHER_EMAIL_PROMPT = "tch_email_prompt";
+	public static final String TEACHER_SOUND_PROMPT = "tch_sound_prompt";
+	public static final String TEACHER_ABSENCE_PROMPT="tch_absence_prompt";
 }

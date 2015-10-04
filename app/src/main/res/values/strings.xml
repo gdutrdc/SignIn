@@ -20,6 +20,7 @@
     <string name="settings">设置</string>
     <string name="cancel">取消</string>
     <string name="absence_limit">缺课次数限制</string>
+    <string name="absence_percent">缺课比率限制</string>
     <string-array name="std_absence_times_values">
         <item>0</item>
         <item>3</item>

@@ -115,4 +115,13 @@ public abstract class AbsMainActivity extends ToolbarActivity {
 			intent.setClass(this, TchSettingsActivity.class);
 		startActivityForResult(intent, REQUEST_SETTINGS);
 	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		switch (resultCode){
+			case REQUEST_SETTINGS:
+				//TODO 如果设置变动使得外部需要更新什么处理，在这里变动
+				break;
+		}
+	}
 }
