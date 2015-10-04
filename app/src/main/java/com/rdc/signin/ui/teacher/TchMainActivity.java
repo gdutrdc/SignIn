@@ -12,7 +12,7 @@ import com.rdc.signin.database.ClassListDBHelper;
 import com.rdc.signin.net.common.GetClassList;
 import com.rdc.signin.net.control.ConnectListener;
 import com.rdc.signin.ui.common.AbsMainActivity;
-import com.rdc.signin.ui.registe.LoginActivity;
+import com.rdc.signin.ui.register.LoginActivity;
 import com.rdc.signin.ui.adapter.ClassListAdapter;
 import com.rdc.signin.utils.JSONUtils;
 
@@ -64,14 +64,23 @@ public class TchMainActivity extends AbsMainActivity implements View.OnClickList
 	}
 
 	@Override
+	protected void onSaveData() {
+		saveClassList(adapter.getClassList());
+	}
+
+	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.nav_exit_tch:
 				finish();
 				break;
 			case R.id.nav_message_tch:
+				break;
 			case R.id.nav_result_tch:
+				break;
 			case R.id.nav_settings_tch:
+				startSettingsActivity();
+				break;
 			case R.id.nav_switch_account_tch:
 				Intent login = new Intent(this, LoginActivity.class);
 				login.putExtra("switch_user", true);
@@ -82,9 +91,4 @@ public class TchMainActivity extends AbsMainActivity implements View.OnClickList
 		}
 	}
 
-	@Override
-	public void onBackPressed() {
-		super.onBackPressed();
-		saveClassList(adapter.getClassList());
-	}
 }

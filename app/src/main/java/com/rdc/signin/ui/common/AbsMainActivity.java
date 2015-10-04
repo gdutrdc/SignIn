@@ -1,5 +1,6 @@
 package com.rdc.signin.ui.common;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -16,7 +17,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.rdc.signin.R;
+import com.rdc.signin.app.SignInApp;
+import com.rdc.signin.constant.User;
 import com.rdc.signin.database.ClassListDBHelper;
+import com.rdc.signin.ui.student.StdSettingsActivity;
+import com.rdc.signin.ui.teacher.TchSettingsActivity;
 import com.rdc.signin.ui.widget.DividerItemDecoration;
 import com.rdc.signin.utils.UIUtils;
 
@@ -30,6 +35,8 @@ public abstract class AbsMainActivity extends ToolbarActivity {
 	protected SwipeRefreshLayout swipeRefreshLayout;
 	protected DrawerLayout drawerLayout;
 
+	private final int REQUEST_SETTINGS = 0x1;
+
 	/**
 	 * 当列表被刷新时回调该方法
 	 */
@@ -38,6 +45,8 @@ public abstract class AbsMainActivity extends ToolbarActivity {
 	protected abstract void initRecyclerView(RecyclerView recyclerView);
 
 	protected abstract View createNavigationView();
+
+	protected abstract void onSaveData();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -90,5 +99,20 @@ public abstract class AbsMainActivity extends ToolbarActivity {
 		ClassListDBHelper helper = new ClassListDBHelper(this);
 		SQLiteDatabase db = helper.getWritableDatabase();
 		helper.writeClassList(db, list);
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		onSaveData();
+	}
+
+	protected void startSettingsActivity() {
+		Intent intent = new Intent();
+		if (SignInApp.user.getIdentity() == User.IDENTITY_STUDENT)
+			intent.setClass(this, StdSettingsActivity.class);
+		else
+			intent.setClass(this, TchSettingsActivity.class);
+		startActivityForResult(intent, REQUEST_SETTINGS);
 	}
 }

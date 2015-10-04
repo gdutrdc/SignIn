@@ -11,9 +11,9 @@ import com.rdc.signin.app.SignInApp;
 import com.rdc.signin.database.ClassListDBHelper;
 import com.rdc.signin.net.common.GetClassList;
 import com.rdc.signin.net.control.ConnectListener;
-import com.rdc.signin.ui.common.AbsMainActivity;
 import com.rdc.signin.ui.adapter.ClassListAdapter;
-import com.rdc.signin.ui.registe.LoginActivity;
+import com.rdc.signin.ui.common.AbsMainActivity;
+import com.rdc.signin.ui.register.LoginActivity;
 import com.rdc.signin.utils.JSONUtils;
 
 /**
@@ -69,6 +69,11 @@ public class StdMainActivity extends AbsMainActivity implements View.OnClickList
 	}
 
 	@Override
+	protected void onSaveData() {
+		saveClassList(adapter.getClassList());
+	}
+
+	@Override
 	public void onBackPressed() {
 		super.onBackPressed();
 		saveClassList(adapter.getClassList());
@@ -82,6 +87,8 @@ public class StdMainActivity extends AbsMainActivity implements View.OnClickList
 				break;
 			case R.id.nav_email_std:
 			case R.id.nav_settings_std:
+				startSettingsActivity();
+				break;
 			case R.id.nav_upload_failed_std:
 			case R.id.nav_switch_account_std:
 				Intent login = new Intent(this, LoginActivity.class);
