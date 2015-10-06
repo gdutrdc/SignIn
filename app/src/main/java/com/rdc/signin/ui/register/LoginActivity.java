@@ -1,4 +1,4 @@
-package com.rdc.signin.ui.registe;
+package com.rdc.signin.ui.register;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -64,6 +64,7 @@ public class LoginActivity extends ToolbarActivity {
 
 		setContentView(R.layout.activity_login);
 
+		getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 		getSupportActionBar().setTitle(R.string.login);
 
 		setupView();

@@ -39,7 +39,7 @@ public class JniMethods {
 		this.valueKey = valueKey;
 	}
 
-	public String encrypt(String input) {
+	public String encrypt(String input,String valueKey){
 		byte[] crypted = null;
 		try {
 			SecretKeySpec skey = new SecretKeySpec(valueKey.getBytes(), "AES");
@@ -51,6 +51,10 @@ public class JniMethods {
 		}
 		// return new String(Base64.decode(input, Base64.DEFAULT));
 		return new String(RDCBase64.encodeBase64(crypted));
+	}
+
+	public String encrypt(String input) {
+		return encrypt(input,valueKey);
 	}
 
 	// public String decrypt(String input, String key) {

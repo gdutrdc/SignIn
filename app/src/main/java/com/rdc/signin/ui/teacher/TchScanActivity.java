@@ -39,6 +39,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
 public final class TchScanActivity extends AppCompatActivity implements
 		SurfaceHolder.Callback {
 	private boolean isTorchOn = false;
@@ -57,7 +58,6 @@ public final class TchScanActivity extends AppCompatActivity implements
 	private AmbientLightManager ambientLightManager;
 	private TchScanListAdapter mListAdapter;
 	private String mClassId;
-	private String mTokenMark;
 
 	public ViewfinderView getViewfinderView() {
 		return viewfinderView;
@@ -104,7 +104,6 @@ public final class TchScanActivity extends AppCompatActivity implements
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// TODO Auto-generated method stub
 		getMenuInflater().inflate(R.menu.menu_tch_scan, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
@@ -180,15 +179,6 @@ public final class TchScanActivity extends AppCompatActivity implements
 
 		decodeFormats = null;
 		characterSet = null;
-	}
-
-	/**
-	 * 获得登录标志
-	 * 
-	 * @return 登录标志
-	 */
-	public String getTokenMark() {
-		return mTokenMark;
 	}
 
 	/**

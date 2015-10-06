@@ -1,4 +1,4 @@
-package com.rdc.signin.ui.registe;
+package com.rdc.signin.ui.register;
 
 import android.content.DialogInterface;
 import android.content.Intent;
