@@ -107,9 +107,9 @@ public abstract class AbsClassActivity extends ToolbarActivity implements Sticky
 		} else {
 			if (t >= 0 && t <=
 					appBarMaxHeight - toolbarHeight) {
-				if (changeHeight == toolbarHeight && fab.isShowing())
+				if (changeHeight <= 1.05 * toolbarHeight && fab.isShowing())
 					fab.hide();
-				else if (changeHeight > toolbarHeight && !fab.isShowing())
+				else if (changeHeight > 1.05 * toolbarHeight && !fab.isShowing())
 					fab.show();
 				params.height = changeHeight;
 				tvTitle.setTextSize(
