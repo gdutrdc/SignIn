@@ -65,13 +65,10 @@ public class LoginActivity extends ToolbarActivity {
 		setContentView(R.layout.activity_login);
 
 		getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-		getSupportActionBar().setTitle(R.string.login);
 
 		setupView();
 
 		keyboardUtils = new KeyboardUtils(this, findViewById(R.id.login_tips));
-
-
 	}
 
 	private void setupView() {
@@ -127,6 +124,10 @@ public class LoginActivity extends ToolbarActivity {
 		if (mLoginPassword.getEditText() != null)
 			password = mLoginPassword.getEditText().getText().toString();
 
+		if (account == null || password == null || account.length() == 0 && password.length() == 0) {
+			Toast.makeText(this, "不能为空", Toast.LENGTH_SHORT).show();
+			return;
+		}
 		DialogUtils.showProgressDialog(this, "正在登录");
 		login(account, password);
 	}
