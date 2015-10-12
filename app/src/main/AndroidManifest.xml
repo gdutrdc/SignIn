@@ -26,7 +26,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.register.LoginActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:windowSoftInputMode="stateHidden|stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -39,6 +40,7 @@
         <activity android:name=".ui.student.StdMainActivity"/>
         <activity android:name=".ui.teacher.TchMainActivity"/>
         <activity android:name=".ui.teacher.TchScanActivity"/>
+        <activity android:name=".ui.student.StdSignInActivity"/>
         <activity
             android:name=".ui.teacher.TchSettingsActivity"
             android:label="@string/settings"/>

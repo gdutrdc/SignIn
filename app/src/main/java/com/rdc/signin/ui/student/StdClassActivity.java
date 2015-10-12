@@ -1,10 +1,10 @@
 package com.rdc.signin.ui.student;
 
+import android.content.Intent;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.rdc.signin.R;
 import com.rdc.signin.constant.StdClass;
@@ -30,8 +30,7 @@ public class StdClassActivity extends AbsClassActivity {
 
 	@Override
 	protected void onFABClick(FloatingActionButton fab) {
-
-		Toast.makeText(this, "FAB click", Toast.LENGTH_SHORT).show();
+		startActivity(new Intent(this, StdSignInActivity.class));
 	}
 
 	@Override
