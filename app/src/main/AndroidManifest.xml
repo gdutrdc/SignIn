@@ -41,6 +41,7 @@
         <activity android:name=".ui.teacher.TchMainActivity"/>
         <activity android:name=".ui.teacher.TchScanActivity"/>
         <activity android:name=".ui.student.StdSignInActivity"/>
+        <activity android:name=".ui.teacher.TchSignInActivity"/>
         <activity
             android:name=".ui.teacher.TchSettingsActivity"
             android:label="@string/settings"/>

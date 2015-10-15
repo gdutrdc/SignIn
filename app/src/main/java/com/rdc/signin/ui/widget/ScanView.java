@@ -17,6 +17,8 @@ public class ScanView extends View {
 	private Paint scanPaint;
 	private Paint linePaint;
 
+	private boolean isAnimating = false;
+
 	private Matrix matrix;
 
 	private int angle = 0;
@@ -24,6 +26,8 @@ public class ScanView extends View {
 	private Runnable runnable = new Runnable() {
 		@Override
 		public void run() {
+			if(!isAnimating)
+				return;
 			angle += 1;
 			matrix = new Matrix();
 			matrix.postRotate(angle, getMeasuredWidth() / 2, getMeasuredHeight() / 2);
@@ -43,24 +47,32 @@ public class ScanView extends View {
 		post(runnable);
 	}
 
+	public void setAnimating(boolean isAnimating) {
+		this.isAnimating = isAnimating;
+		post(runnable);
+	}
+
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
+
+		int size = Math.min(getMeasuredHeight(), getMeasuredWidth()) / 2;
 
 		if (linePaint == null) {
 			linePaint = new Paint();
 			linePaint.setColor(Color.BLACK);
 			linePaint.setStyle(Paint.Style.STROKE);
+			linePaint.setAntiAlias(true);
 		}
 		canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2,
-				getMeasuredWidth() / 2 - DEFAULT_PADDING, linePaint);
+				size - DEFAULT_PADDING, linePaint);
 		canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2,
-				getMeasuredWidth() / 4, linePaint);
+				size / 4, linePaint);
 		canvas.drawLine(DEFAULT_PADDING, getMeasuredHeight() / 2,
 				getMeasuredWidth() - DEFAULT_PADDING, getMeasuredHeight() / 2, linePaint);
-		canvas.drawLine(getMeasuredWidth() / 2,
+		canvas.drawLine(size,
 				getMeasuredHeight() / 2 - getMeasuredWidth() / 2 + DEFAULT_PADDING,
-				getMeasuredWidth() / 2,
+				size,
 				getMeasuredHeight() / 2 + getMeasuredWidth() / 2 - DEFAULT_PADDING, linePaint);
 
 		if (scanPaint == null) {
@@ -71,7 +83,7 @@ public class ScanView extends View {
 		}
 		canvas.concat(matrix);
 		canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2,
-				getMeasuredWidth() / 2 - DEFAULT_PADDING, scanPaint);
+				size - DEFAULT_PADDING, scanPaint);
 
 	}
 }
