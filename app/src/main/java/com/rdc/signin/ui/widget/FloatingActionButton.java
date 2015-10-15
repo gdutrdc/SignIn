@@ -99,9 +99,9 @@ public class FloatingActionButton extends View {
 				}
 			});
 			setClipToOutline(true);
-			setBackgroundDrawable(mRipple);
-			setElevation(16f);
-			setTranslationZ(6f);
+			setBackground(mRipple);
+			setElevation(getRealSize(6));
+			setTranslationZ(getRealSize(10));
 		} else {
 			if (Build.VERSION.SDK_INT >= 11)
 				setLayerType(LAYER_TYPE_SOFTWARE, null);
@@ -142,7 +142,7 @@ public class FloatingActionButton extends View {
 	private float getRealSize(int dp) {
 		Resources resources = getContext().getResources();
 		DisplayMetrics metrics = resources.getDisplayMetrics();
-		return dp * (metrics.densityDpi / 148f);
+		return dp * (metrics.densityDpi / 160f);
 	}
 
 	private static int resolveAdjustedSize(int desiredSize, int measureSpec) {
@@ -173,17 +173,19 @@ public class FloatingActionButton extends View {
 		if (shadowPaint != null) {
 			shadowPaint.setShadowLayer(10.0f, 2.0f, mShadowSize, Color.GRAY);
 			canvas.drawCircle(width / 2, height / 2, getSizeDimension() / 2, shadowPaint);
+
 		} else {
 			mRipple.setBounds(0, 0, getWidth(), getHeight());
 			mRipple.draw(canvas);
+
 		}
+
 		if (mDrawable != null) {
 			Bitmap bitmap = ((BitmapDrawable) mDrawable).getBitmap();
-			float scaled = 1.0f * getSizeDimension() *
-					(mSize == SIZE_NORMAL ? 3.0f / 7 : 3.0f / 5) / Math.min(bitmap.getWidth(), bitmap.getHeight());
+			float scaled = Math.max(bitmap.getWidth(), bitmap.getHeight()) / getRealSize(28);
 			bitmap = Bitmap.createScaledBitmap(bitmap,
-					(int) (bitmap.getWidth() * scaled),
-					(int) (bitmap.getHeight() * scaled), false);
+					(int) (bitmap.getWidth() / scaled),
+					(int) (bitmap.getHeight() / scaled), false);
 			canvas.drawBitmap(bitmap,
 					(width - bitmap.getWidth()) / 2,
 					(height - bitmap.getHeight()) / 2,
