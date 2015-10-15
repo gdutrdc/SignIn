@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/tch_sign_in_had_sign_in_list"
+        android:icon="@drawable/ic_list_white_24dp"
+        android:title="@string/list_had_sign_in"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/tch_sign_in_by_barcode"
+        android:title="@string/sign_in_by_barcode"/>
+</menu>

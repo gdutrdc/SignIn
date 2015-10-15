@@ -60,7 +60,7 @@ public class WifiController {
 		// 配置热点的名称(可以在名字后面加点随机数什么的)
 		apConfig.SSID = "Teacher's Wifi AP";
 		// 配置热点的密码
-		apConfig.preSharedKey = "TeacherPsw";
+		apConfig.preSharedKey = getLocalMacAddress();
 		// 通过反射调用设置热点
 		try {
 			Method method = manager.getClass().getMethod("setWifiApEnabled",

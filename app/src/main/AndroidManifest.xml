@@ -17,6 +17,7 @@
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.EXPAND_STATUS_BAR"/>
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
 
     <application
         android:name=".app.SignInApp"
@@ -40,8 +41,12 @@
         <activity android:name=".ui.student.StdMainActivity"/>
         <activity android:name=".ui.teacher.TchMainActivity"/>
         <activity android:name=".ui.teacher.TchScanActivity"/>
-        <activity android:name=".ui.student.StdSignInActivity"/>
-        <activity android:name=".ui.teacher.TchSignInActivity"/>
+        <activity
+            android:name=".ui.student.StdSignInActivity"
+            android:label="@string/start_sign_in"/>
+        <activity
+            android:name=".ui.teacher.TchSignInActivity"
+            android:label="@string/start_sign_in"/>
         <activity
             android:name=".ui.teacher.TchSettingsActivity"
             android:label="@string/settings"/>

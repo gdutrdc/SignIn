@@ -34,6 +34,9 @@ public class HotspotView extends View {
 					postInvalidate();
 				}
 				postDelayed(this, 15);
+			} else {
+				circleRadius = 0;
+				postInvalidate();
 			}
 		}
 	};
@@ -44,8 +47,6 @@ public class HotspotView extends View {
 
 	public HotspotView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
-		isAnimating = true;
-		post(runnable);
 		this.context = context;
 	}
 

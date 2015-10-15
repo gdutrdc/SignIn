@@ -26,6 +26,7 @@ public class TchClassActivity extends AbsClassActivity {
 	@Override
 	protected void onFABClick(FloatingActionButton fab) {
 		Intent intent = new Intent(this,TchSignInActivity.class);
+		intent.putExtra("class",mClass);
 		startActivity(intent);
 	}
 

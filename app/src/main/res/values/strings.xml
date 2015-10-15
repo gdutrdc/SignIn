@@ -43,4 +43,10 @@
         <item>50</item>
         <item>70</item>
     </string-array>
+
+    <!-- 签到界面 -->
+    <string name="start_sign_in">开始签到</string>
+    <string name="signing_in">正在签到</string>
+    <string name="list_had_sign_in">当前已签到学生列表</string>
+    <string name="sign_in_by_barcode">通过二维码签到</string>
 </resources>
