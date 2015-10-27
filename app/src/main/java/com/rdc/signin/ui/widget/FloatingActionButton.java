@@ -20,9 +20,9 @@ import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewOutlineProvider;
+import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.ScaleAnimation;
-import android.view.animation.TranslateAnimation;
 
 import com.rdc.signin.R;
 import com.rdc.signin.utils.UIUtils;
@@ -232,10 +232,9 @@ public class FloatingActionButton extends View {
 			@Override
 			public void run() {
 				AnimationSet animationSet = new AnimationSet(true);
-				ScaleAnimation scaleAnimation = new ScaleAnimation(1, 0, 1, 0);
+				ScaleAnimation scaleAnimation = new ScaleAnimation(1, 0, 1, 0,
+						Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
 				animationSet.addAnimation(scaleAnimation);
-				TranslateAnimation translateAnimation = new TranslateAnimation(0, getWidth() / 2, 0, getHeight() / 2);
-				animationSet.addAnimation(translateAnimation);
 				animationSet.setDuration(200L);
 
 				startAnimation(animationSet);
@@ -249,10 +248,9 @@ public class FloatingActionButton extends View {
 			@Override
 			public void run() {
 				AnimationSet animationSet = new AnimationSet(true);
-				ScaleAnimation scaleAnimation = new ScaleAnimation(0, 1, 0, 1);
+				ScaleAnimation scaleAnimation = new ScaleAnimation(0, 1, 0, 1,
+						Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
 				animationSet.addAnimation(scaleAnimation);
-				TranslateAnimation translateAnimation = new TranslateAnimation(getWidth() / 2, 0, getHeight() / 2, 0);
-				animationSet.addAnimation(translateAnimation);
 				animationSet.setDuration(200L);
 
 				startAnimation(animationSet);
