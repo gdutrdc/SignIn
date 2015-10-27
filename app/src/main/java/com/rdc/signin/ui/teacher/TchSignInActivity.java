@@ -63,7 +63,7 @@ public class TchSignInActivity extends ToolbarActivity implements View.OnClickLi
 						mTipsAnimation = new AnimationSet(true);
 
 						ScaleAnimation scaleAnimation = new ScaleAnimation(1, 1.5f, 1, 1.5f,
-								mTvSignInTips.getWidth() / 2, mTvSignInTips.getHeight() / 2);
+								Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
 						scaleAnimation.setRepeatCount(-1);
 						mTipsAnimation.addAnimation(scaleAnimation);
 						AlphaAnimation alphaAnimation = new AlphaAnimation(1, 0.5f);
@@ -98,9 +98,9 @@ public class TchSignInActivity extends ToolbarActivity implements View.OnClickLi
 					handler.sendEmptyMessageDelayed(CHECK_COMMIT_STATE, 200);
 			} else if (msg.what == RESTORE_WIFI_STATE) {
 				if (mWifiController.getWifiBack()) {
-					if (!mWifiController.isWifiEnabled())
+					if (!mWifiController.isWifiEnabled()) {
 						handler.sendEmptyMessageDelayed(RESTORE_WIFI_STATE, 200);
-					else {
+					} else {
 						DialogUtils.dismissAllDialog();
 						Toast.makeText(TchSignInActivity.this, "Wifi已恢复",
 								Toast.LENGTH_SHORT).show();
@@ -108,6 +108,13 @@ public class TchSignInActivity extends ToolbarActivity implements View.OnClickLi
 						mTvSignInTips.setVisibility(View.GONE);
 						mTvSignInTips.clearAnimation();
 					}
+					mFAB.setImageDrawable(getResources().
+							getDrawable(R.drawable.ic_wifi_tethering_white_24dp));
+				}else{
+					DialogUtils.dismissAllDialog();
+					mHotspotView.setAnimating(false);
+					mTvSignInTips.setVisibility(View.GONE);
+					mTvSignInTips.clearAnimation();
 					mFAB.setImageDrawable(getResources().
 							getDrawable(R.drawable.ic_wifi_tethering_white_24dp));
 				}
@@ -131,8 +138,8 @@ public class TchSignInActivity extends ToolbarActivity implements View.OnClickLi
 
 		mWifiController = new WifiController(this);
 		if (mWifiController.isWifiApEnabled()) {
-			mFAB.setImageDrawable(getResources()
-					.getDrawable(R.drawable.ic_portable_wifi_off_white_24dp));
+			targetApState = true;
+			handler.sendEmptyMessage(CHANGE_AP_STATE_SUCCEED);
 		}
 	}
 
@@ -166,8 +173,11 @@ public class TchSignInActivity extends ToolbarActivity implements View.OnClickLi
 					handler.sendEmptyMessage(CHECK_AP_STATE);
 					DialogUtils.showProgressDialog(this, "请稍候");
 				} else {
+					if(mWifiController.getWifiBack()) {
+						DialogUtils.showProgressDialog(this, "正在重新开启wifi...");
+					}else
+					DialogUtils.showProgressDialog(this,"请稍候");
 					handler.sendEmptyMessage(RESTORE_WIFI_STATE);
-					DialogUtils.showProgressDialog(TchSignInActivity.this, "正在重新开启wifi...");
 				}
 				break;
 		}

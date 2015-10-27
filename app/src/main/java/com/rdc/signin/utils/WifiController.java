@@ -18,13 +18,11 @@ import java.util.List;
 public class WifiController {
 	private WifiManager manager;
 	private boolean isWifiEnabled;
-	private Context context;
 
 	public WifiController(Context context) {
-		this.context = context;
 
 		manager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-		isWifiEnabled = isWifiEnabled();
+		isWifiEnabled = !isWifiApEnabled() && isWifiEnabled();
 	}
 
 	/**
