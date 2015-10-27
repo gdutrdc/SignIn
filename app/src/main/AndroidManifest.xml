@@ -53,6 +53,9 @@
         <activity
             android:name=".ui.student.StdSettingsActivity"
             android:label="@string/settings"/>
+        <activity android:name=".ui.teacher.TchStudentListActivity"
+                  android:label="@string/student_list"/>
+
 
 
         <!-- push应用定义消息receiver声明 -->

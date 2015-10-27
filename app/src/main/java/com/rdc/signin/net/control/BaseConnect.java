@@ -69,8 +69,8 @@ public abstract class BaseConnect {
 			}, new Response.ErrorListener() {
 				@Override
 				public void onErrorResponse(VolleyError error) {
-					error.printStackTrace();
 					onResult(false, error.getMessage(), null);
+					error.printStackTrace();
 				}
 			}) {
 				@Override

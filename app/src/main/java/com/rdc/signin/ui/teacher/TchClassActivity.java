@@ -3,6 +3,8 @@ package com.rdc.signin.ui.teacher;
 import android.content.Intent;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -25,8 +27,8 @@ public class TchClassActivity extends AbsClassActivity {
 
 	@Override
 	protected void onFABClick(FloatingActionButton fab) {
-		Intent intent = new Intent(this,TchSignInActivity.class);
-		intent.putExtra("class",mClass);
+		Intent intent = new Intent(this, TchSignInActivity.class);
+		intent.putExtra("class", mClass);
 		startActivity(intent);
 	}
 
@@ -49,9 +51,26 @@ public class TchClassActivity extends AbsClassActivity {
 		tvClassHour.setText(mClass.getHour());
 		if (mClass.getAbout().length() > 0) {
 			tvClassAbout.setText(mClass.getAbout());
-		}
-		else {
+		} else {
 			tvClassAbout.setText("(无)");
 		}
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.menu_tch_class, menu);
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case R.id.tch_class_student_list:
+				Intent studentList = new Intent(this, TchStudentListActivity.class);
+				studentList.putExtra("classId", mClass.getId());
+				startActivity(studentList);
+				break;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 }

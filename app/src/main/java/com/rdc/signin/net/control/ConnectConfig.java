@@ -58,4 +58,15 @@ public class ConnectConfig {
 		public static final String RESPONSE_REST = "rest";
 		public static final String RESPONSE_SIGNTIMES = "signtimes";
 	}
+
+	public static class GetStudentList{
+		public static final String URL = HOST +"Teacher/Student/GetStudentList";
+
+		public static final String REQUEST_CLASS_ID="classId";
+
+		public static final String RESPONSE_ACCOUNT = "account";
+		public static final String RESPONSE_NAME = "name";
+		public static final String RESPONSE_REST = "rest";
+		public static final String RESPONSE_SIGN_TIMES = "signtimes";
+	}
 }

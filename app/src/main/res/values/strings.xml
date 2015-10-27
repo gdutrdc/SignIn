@@ -43,6 +43,8 @@
         <item>50</item>
         <item>70</item>
     </string-array>
+    <!-- 课程信息界面 -->
+    <string name="student_list">学生列表</string>
 
     <!-- 签到界面 -->
     <string name="start_sign_in">开始签到</string>

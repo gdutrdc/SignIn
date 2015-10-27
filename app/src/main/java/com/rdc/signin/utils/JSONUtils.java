@@ -3,6 +3,7 @@ package com.rdc.signin.utils;
 import android.os.Parcelable;
 
 import com.rdc.signin.constant.StdClass;
+import com.rdc.signin.constant.Student;
 import com.rdc.signin.constant.TchClass;
 import com.rdc.signin.constant.User;
 import com.rdc.signin.net.control.ConnectConfig;
@@ -28,6 +29,37 @@ public class JSONUtils {
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+	public static ArrayList<Student> getStudentList(String json) {
+		ArrayList<Student> students = null;
+		try {
+			JSONObject jsonObject = new JSONObject(json);
+			students = new ArrayList<>();
+			JSONArray jsonArray = jsonObject.getJSONArray("studentList");
+			for (int i = 0; i < jsonArray.length(); i++) {
+				students.add(getStudent(jsonArray.getString(i)));
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return students;
+	}
+
+	public static Student getStudent(String json) {
+		Student student = null;
+		try {
+			JSONObject jsonObject = new JSONObject(json);
+			student = new Student();
+			student.setAccount(jsonObject.getString(ConnectConfig.GetStudentList.RESPONSE_ACCOUNT));
+			student.setName(jsonObject.getString(ConnectConfig.GetStudentList.RESPONSE_NAME));
+			student.setRest(jsonObject.getInt(ConnectConfig.GetStudentList.RESPONSE_REST));
+			student.setSigntimes(jsonObject.getInt(ConnectConfig.GetStudentList.RESPONSE_SIGN_TIMES));
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return student;
+
 	}
 
 	public static User getUser(String json) {
