@@ -3,6 +3,7 @@ package com.rdc.signin.ui.common;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.view.GravityCompat;
@@ -81,7 +82,10 @@ public abstract class AbsMainActivity extends ToolbarActivity {
 					this, drawerLayout, (Toolbar) findViewById(R.id.toolbar), R.string.open_drawer, R.string.close_drawer);
 			toggle.syncState();
 			drawerLayout.setDrawerListener(toggle);
-			drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
+			if (Build.VERSION.SDK_INT >= 21)
+				drawerLayout.setDrawerElevation(UIUtils.convertDpToPixel(16, this));
+			else
+				drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 			drawerLayout.getChildAt(drawerLayout.getChildCount() - 1).setClickable(false);
 		}
 	}
@@ -118,7 +122,7 @@ public abstract class AbsMainActivity extends ToolbarActivity {
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		switch (resultCode){
+		switch (resultCode) {
 			case REQUEST_SETTINGS:
 				//TODO 如果设置变动使得外部需要更新什么处理，在这里变动
 				break;

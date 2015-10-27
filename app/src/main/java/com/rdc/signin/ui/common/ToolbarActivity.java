@@ -43,18 +43,24 @@ public class ToolbarActivity extends AbsActivity {
 			ViewGroup.LayoutParams params = statusBar.getLayoutParams();
 			params.height = UIUtils.getStatusHeight(this);
 			statusBar.setLayoutParams(params);
+
+			if (Build.VERSION.SDK_INT >= 21) {
+				float topBarElevation = UIUtils.convertDpToPixel(4, this);
+				statusBar.setElevation(topBarElevation);
+				toolbar.setElevation(topBarElevation);
+			}
 		}
 	}
 
-	public Toolbar getToolbar(){
+	public Toolbar getToolbar() {
 		return toolbar;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		boolean flag = super.onOptionsItemSelected(item);
-		if(!flag){
-			if(item.getItemId() == android.R.id.home)
+		if (!flag) {
+			if (item.getItemId() == android.R.id.home)
 				onBackPressed();
 		}
 		return flag;

@@ -1,7 +1,9 @@
 package com.rdc.signin.ui.common;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -46,6 +48,9 @@ public abstract class AbsClassActivity extends ToolbarActivity implements Sticky
 		fab = UIUtils.findView(this, R.id.class_fab);
 		scrollView = UIUtils.findView(this, R.id.class_scroll_view);
 		tvTitle = UIUtils.findView(this, R.id.class_title);
+
+		if (Build.VERSION.SDK_INT >= 21)
+			tvTitle.setElevation(UIUtils.convertDpToPixel(4, this));
 
 		fab.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -92,6 +97,7 @@ public abstract class AbsClassActivity extends ToolbarActivity implements Sticky
 		int changeHeight = appBarMaxHeight - t;
 		RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) tvTitle.getLayoutParams();
 
+		Log.d("onScroll", "top : " + t + ",changeHeight = " + changeHeight + ",toolbarHeight = " + toolbarHeight);
 		if (changeHeight > appBarMaxHeight) {
 			if (tvTitle.getHeight() != appBarMaxHeight) {
 				params.height = appBarMaxHeight;
@@ -107,9 +113,9 @@ public abstract class AbsClassActivity extends ToolbarActivity implements Sticky
 		} else {
 			if (t >= 0 && t <=
 					appBarMaxHeight - toolbarHeight) {
-				if (changeHeight <= 1.05 * toolbarHeight && fab.isShowing())
+				if (changeHeight <= 1.5 * toolbarHeight && fab.isShowing())
 					fab.hide();
-				else if (changeHeight > 1.05 * toolbarHeight && !fab.isShowing())
+				else if (changeHeight > 1.5 * toolbarHeight && !fab.isShowing())
 					fab.show();
 				params.height = changeHeight;
 				tvTitle.setTextSize(
