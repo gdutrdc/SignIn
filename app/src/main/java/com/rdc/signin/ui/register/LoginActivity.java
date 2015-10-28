@@ -86,9 +86,14 @@ public class LoginActivity extends ToolbarActivity {
 			}
 			if (mLoginPassword.getEditText() != null)
 				mLoginPassword.getEditText().setText(user.getPassword());
-			if (user.getIdentity() == User.IDENTITY_STUDENT)
+			if (user.getIdentity() == User.IDENTITY_STUDENT) {
+				String value = user.getValue();
+				JniMethods methods = JniMethods.getInstance();
+				value = methods.decrypt(value,
+						JniMethods.getJniKey());
+				methods.setValueKey(value);
 				((RadioButton) mLoginIdentityWrapper.getChildAt(1)).setChecked(true);
-			else
+			} else
 				((RadioButton) mLoginIdentityWrapper.getChildAt(0)).setChecked(true);
 		} else
 			((RadioButton) mLoginIdentityWrapper.getChildAt(1)).setChecked(true);

@@ -26,8 +26,13 @@ public class ScanView extends View {
 	private Runnable runnable = new Runnable() {
 		@Override
 		public void run() {
-			if(!isAnimating)
+			if (!isAnimating) {
+				angle = 0;
+				matrix = new Matrix();
+				matrix.postRotate(angle, getMeasuredWidth() / 2, getMeasuredHeight() / 2);
+				postInvalidate();
 				return;
+			}
 			angle += 1;
 			matrix = new Matrix();
 			matrix.postRotate(angle, getMeasuredWidth() / 2, getMeasuredHeight() / 2);
@@ -50,6 +55,10 @@ public class ScanView extends View {
 	public void setAnimating(boolean isAnimating) {
 		this.isAnimating = isAnimating;
 		post(runnable);
+	}
+
+	public boolean isAnimating() {
+		return isAnimating;
 	}
 
 	@Override

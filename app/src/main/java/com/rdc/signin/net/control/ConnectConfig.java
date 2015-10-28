@@ -69,4 +69,13 @@ public class ConnectConfig {
 		public static final String RESPONSE_REST = "rest";
 		public static final String RESPONSE_SIGN_TIMES = "signtimes";
 	}
+
+	public static class SignIn{
+		public static final String URL_STD = HOST+"/Student/Class/doSignInAction";
+
+		public static final String RESPONSE_CLASS_ID="classId";
+		public static final String RESPONSE_STUDENT_ID="studentId";
+		public static final String RESPONSE_VALUE = "value";
+		public static final String RESPONSE_TIME = "time";
+	}
 }

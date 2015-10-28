@@ -118,6 +118,8 @@ public class WifiController {
 	 */
 	private List<ScanResult> getScanResults() {
 		List<ScanResult> resultList;
+		if (!isWifiEnabled())
+			manager.setWifiEnabled(true);
 		manager.startScan();
 		resultList = manager.getScanResults();
 		if (SignInApp.DEBUG)

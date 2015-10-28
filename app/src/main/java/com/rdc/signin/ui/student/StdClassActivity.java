@@ -30,7 +30,10 @@ public class StdClassActivity extends AbsClassActivity {
 
 	@Override
 	protected void onFABClick(FloatingActionButton fab) {
-		startActivity(new Intent(this, StdSignInActivity.class));
+		Intent intent = new Intent(this, StdSignInActivity.class);
+		intent.putExtra("mac", mClass.getMac());
+		intent.putExtra("id",mClass.getClassId());
+		startActivity(intent);
 	}
 
 	@Override

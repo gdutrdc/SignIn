@@ -3,7 +3,6 @@ package com.rdc.signin.ui.common;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -97,7 +96,6 @@ public abstract class AbsClassActivity extends ToolbarActivity implements Sticky
 		int changeHeight = appBarMaxHeight - t;
 		RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) tvTitle.getLayoutParams();
 
-		Log.d("onScroll", "top : " + t + ",changeHeight = " + changeHeight + ",toolbarHeight = " + toolbarHeight);
 		if (changeHeight > appBarMaxHeight) {
 			if (tvTitle.getHeight() != appBarMaxHeight) {
 				params.height = appBarMaxHeight;

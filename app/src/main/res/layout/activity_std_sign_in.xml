@@ -11,5 +11,21 @@
     <com.rdc.signin.ui.widget.ScanView
         android:id="@+id/std_sign_in_scan"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="?attr/selectableItemBackground">
+
+        <Button
+            android:id="@+id/std_sign_in_start"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/listPreferredItemHeightSmall"
+            android:background="?attr/colorAccent"
+            android:gravity="center"
+            android:text="@string/start_sign_in"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead.Inverse"/>
+    </FrameLayout>
 </LinearLayout>
