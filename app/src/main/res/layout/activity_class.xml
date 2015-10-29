@@ -22,22 +22,13 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:theme="@style/AppTheme.Dark">
 
-            <ImageView
-                android:id="@+id/backdrop"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="?attr/colorPrimary"
-                android:scaleType="centerCrop"
-                app:layout_collapseMode="parallax"/>
-
-
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/Theme.AppCompat.Light"
-                app:theme="@style/Theme.AppCompat"/>
+                app:popupTheme="@style/Theme.AppCompat.Light"/>
 
 
         </android.support.design.widget.CollapsingToolbarLayout>
