@@ -2,6 +2,7 @@ package com.rdc.signin.ui.student;
 
 import android.content.Intent;
 import android.os.Parcelable;
+import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -9,7 +10,6 @@ import android.widget.TextView;
 import com.rdc.signin.R;
 import com.rdc.signin.constant.StdClass;
 import com.rdc.signin.ui.common.AbsClassActivity;
-import com.rdc.signin.ui.widget.FloatingActionButton;
 import com.rdc.signin.utils.UIUtils;
 
 /**

@@ -27,11 +27,11 @@
         android:text="@string/signing_in"
         android:textAppearance="@style/TextAppearance.AppCompat.Subhead.Inverse"/>
 
-    <com.rdc.signin.ui.widget.FloatingActionButton
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/tch_sign_in_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        app:src="@drawable/ic_wifi_tethering_white_24dp"/>
+        android:src="@drawable/ic_wifi_tethering_white_24dp"/>
 </RelativeLayout>

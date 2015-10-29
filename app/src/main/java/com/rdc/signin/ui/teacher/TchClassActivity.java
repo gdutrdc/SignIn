@@ -2,6 +2,7 @@ package com.rdc.signin.ui.teacher;
 
 import android.content.Intent;
 import android.os.Parcelable;
+import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,7 +12,6 @@ import android.widget.TextView;
 import com.rdc.signin.R;
 import com.rdc.signin.constant.TchClass;
 import com.rdc.signin.ui.common.AbsClassActivity;
-import com.rdc.signin.ui.widget.FloatingActionButton;
 import com.rdc.signin.utils.UIUtils;
 
 /**
