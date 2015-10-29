@@ -49,7 +49,7 @@
                 android:id="@+id/nav_result_tch"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:background="@drawable/selectable_item_background"
+                android:background="?attr/selectableItemBackground"
                 android:clickable="true">
 
                 <ImageView
@@ -72,7 +72,7 @@
                 android:id="@+id/nav_message_tch"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:background="@drawable/selectable_item_background"
+                android:background="?attr/selectableItemBackground"
                 android:clickable="true">
 
                 <ImageView
@@ -95,7 +95,7 @@
                 android:id="@+id/nav_settings_tch"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:background="@drawable/selectable_item_background"
+                android:background="?attr/selectableItemBackground"
                 android:clickable="true">
 
                 <ImageView
@@ -118,7 +118,7 @@
                 android:id="@+id/nav_switch_account_tch"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:background="@drawable/selectable_item_background"
+                android:background="?attr/selectableItemBackground"
                 android:clickable="true">
 
                 <ImageView
@@ -141,7 +141,7 @@
                 android:id="@+id/nav_exit_tch"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:background="@drawable/selectable_item_background"
+                android:background="?attr/selectableItemBackground"
                 android:clickable="true">
 
                 <ImageView

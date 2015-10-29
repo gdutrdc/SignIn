@@ -31,7 +31,7 @@
             android:id="@+id/tch_settings_switch_msg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/selectable_item_background"
+            android:background="?attr/selectableItemBackground"
             android:gravity="center_vertical"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"/>
@@ -50,7 +50,7 @@
         android:layout_height="?attr/listPreferredItemHeight"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:background="@drawable/selectable_item_background"
+        android:background="?attr/selectableItemBackground"
         android:clickable="true">
 
         <TextView
@@ -85,7 +85,7 @@
         android:layout_height="?attr/listPreferredItemHeight"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:background="@drawable/selectable_item_background"
+        android:background="?attr/selectableItemBackground"
         android:clickable="true">
 
         <TextView
@@ -121,7 +121,7 @@
         android:layout_height="?attr/listPreferredItemHeight"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:background="@drawable/selectable_item_background"
+        android:background="?attr/selectableItemBackground"
         android:clickable="true"
         android:gravity="center_vertical"
         android:orientation="vertical">
@@ -159,7 +159,7 @@
         android:layout_height="?attr/listPreferredItemHeight"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:background="@drawable/selectable_item_background"
+        android:background="?attr/selectableItemBackground"
         android:clickable="true">
 
         <TextView
@@ -194,7 +194,7 @@
         android:id="@+id/tch_settings_fallback"
         android:layout_width="match_parent"
         android:layout_height="?attr/listPreferredItemHeight"
-        android:background="@drawable/selectable_item_background"
+        android:background="?attr/selectableItemBackground"
         android:clickable="true"
         android:gravity="center_vertical"
         android:paddingLeft="24dp"
@@ -214,7 +214,7 @@
         android:id="@+id/tch_settings_about_dev"
         android:layout_width="match_parent"
         android:layout_height="?attr/listPreferredItemHeight"
-        android:background="@drawable/selectable_item_background"
+        android:background="?attr/selectableItemBackground"
         android:clickable="true"
         android:gravity="center_vertical"
         android:paddingLeft="24dp"
@@ -233,7 +233,7 @@
         android:id="@+id/tch_settings_contacts"
         android:layout_width="match_parent"
         android:layout_height="?attr/listPreferredItemHeight"
-        android:background="@drawable/selectable_item_background"
+        android:background="?attr/selectableItemBackground"
         android:clickable="true"
         android:gravity="center_vertical"
         android:paddingLeft="24dp"

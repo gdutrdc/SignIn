@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewCompat;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -39,8 +40,11 @@ public abstract class SettingsActivity extends ToolbarActivity {
 	protected void setPreferenceEnabled(View v, boolean enabled) {
 		if (Build.VERSION.SDK_INT >= 11)
 			ViewCompat.setAlpha(v, enabled ? 1 : 0.3f);
-		else
-			v.setBackgroundResource(enabled ? R.drawable.selectable_item_background : R.color.gray);
+		else {
+			TypedValue typedValue = new TypedValue();
+			getTheme().resolveAttribute(R.attr.selectableItemBackground, typedValue, true);
+			v.setBackgroundResource(enabled ? typedValue.resourceId : R.color.gray);
+		}
 		v.setClickable(enabled);
 
 	}
