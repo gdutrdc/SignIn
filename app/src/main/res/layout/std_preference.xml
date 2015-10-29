@@ -16,8 +16,8 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="?attr/listPreferredItemHeight"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp">
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -41,16 +41,16 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
         android:background="#6000"/>
 
     <FrameLayout
         android:id="@+id/std_settings_email"
         android:layout_width="match_parent"
         android:layout_height="?attr/listPreferredItemHeight"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
         android:background="?attr/selectableItemBackground"
         android:clickable="true">
 
@@ -76,16 +76,16 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
         android:background="#6000"/>
 
     <FrameLayout
         android:id="@+id/std_settings_absence"
         android:layout_width="match_parent"
         android:layout_height="?attr/listPreferredItemHeight"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
         android:background="?attr/selectableItemBackground"
         android:clickable="true">
 
@@ -112,16 +112,16 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
         android:background="#6000"/>
 
     <LinearLayout
         android:id="@+id/std_settings_absence_limit"
         android:layout_width="match_parent"
         android:layout_height="?attr/listPreferredItemHeight"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
         android:background="?attr/selectableItemBackground"
         android:clickable="true"
         android:gravity="center_vertical"
@@ -150,16 +150,16 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
         android:background="#6000"/>
 
     <FrameLayout
         android:id="@+id/std_settings_sound"
         android:layout_width="match_parent"
         android:layout_height="?attr/listPreferredItemHeight"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
         android:background="?attr/selectableItemBackground"
         android:clickable="true">
 
@@ -226,8 +226,8 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
         android:background="#6000"/>
 
     <TextView

@@ -14,6 +14,7 @@ import com.rdc.signin.net.teacher.GetCurStudents;
 import com.rdc.signin.net.teacher.GetStudentList;
 import com.rdc.signin.ui.adapter.TchStudentListAdapter;
 import com.rdc.signin.ui.common.ToolbarActivity;
+import com.rdc.signin.ui.widget.DividerItemDecoration;
 import com.rdc.signin.utils.DialogUtils;
 import com.rdc.signin.utils.JSONUtils;
 import com.rdc.signin.utils.UIUtils;
@@ -57,6 +58,7 @@ public class TchStudentListActivity extends ToolbarActivity {
 				setTitle(R.string.list_had_sign_in);
 				break;
 		}
+		mRecyclerView.addItemDecoration(new DividerItemDecoration(this,getResources().getDrawable(R.drawable.divider)));
 		mRecyclerView.setAdapter(adapter);
 
 		mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

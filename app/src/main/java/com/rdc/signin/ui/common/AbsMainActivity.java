@@ -60,7 +60,7 @@ public abstract class AbsMainActivity extends ToolbarActivity {
 		drawerLayout = UIUtils.findView(this, R.id.main_container);
 
 		recyclerView.setLayoutManager(new LinearLayoutManager(this));
-		recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
+		recyclerView.addItemDecoration(new DividerItemDecoration(this, getResources().getDrawable(R.drawable.divider)));
 		initRecyclerView(recyclerView);
 
 		swipeRefreshLayout.setColorSchemeColors(Color.BLUE, Color.RED, Color.GREEN);
