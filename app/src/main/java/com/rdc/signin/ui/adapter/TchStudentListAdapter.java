@@ -1,6 +1,7 @@
 package com.rdc.signin.ui.adapter;
 
 import android.content.Context;
+import android.support.annotation.IntDef;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,8 @@ import com.rdc.signin.R;
 import com.rdc.signin.constant.Student;
 import com.rdc.signin.utils.UIUtils;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 
 /**
@@ -19,6 +22,15 @@ import java.util.ArrayList;
 public class TchStudentListAdapter extends RecyclerView.Adapter<TchStudentListAdapter.StudentViewHolder> {
 	private Context context;
 	private ArrayList<Student> list;
+
+	public static final int TYPE_ALL = 0; // 显示该课程所有学生
+	public static final int TYPE_CURRENT = 1; // 显示该课程当前已签到的学生
+	private int type;
+
+	@IntDef({TYPE_ALL, TYPE_CURRENT})
+	@Retention(RetentionPolicy.SOURCE)
+	public @interface Type {
+	}
 
 	public TchStudentListAdapter(Context context) {
 		this.context = context;
@@ -30,6 +42,19 @@ public class TchStudentListAdapter extends RecyclerView.Adapter<TchStudentListAd
 		StudentViewHolder holder = new StudentViewHolder(
 				LayoutInflater.from(context).inflate(R.layout.item_tch_student_list, parent, false));
 		return holder;
+	}
+
+	public int getType() {
+		return type;
+	}
+
+	/**
+	 * 设置列表要显示的学生类型
+	 *
+	 * @param type 必须为{@link #TYPE_ALL},{@link #TYPE_CURRENT}中的一个
+	 */
+	public void setType(@Type int type) {
+		this.type = type;
 	}
 
 	@Override
@@ -61,10 +86,18 @@ public class TchStudentListAdapter extends RecyclerView.Adapter<TchStudentListAd
 		}
 
 		public void show(Student student) {
-			tvAccount.setText(student.getAccount());
-			tvName.setText(student.getName());
-			tvSignTimes.setText("签到次数: " + student.getSigntimes());
-			tvRest.setText("请假次数: " + student.getRest());
+			if (type == TYPE_ALL) {
+				tvAccount.setText(student.getAccount());
+				tvName.setText(student.getName());
+				tvSignTimes.setText("签到次数: " + student.getSigntimes());
+				tvRest.setText("请假次数: " + student.getRest());
+			} else if(type == TYPE_CURRENT){
+				tvAccount.setText(student.getAccount());
+				tvName.setText(student.getName());
+				tvSignTimes.setText("签到时间: " + student.getSignInTime());
+				if (tvRest.getVisibility() == View.VISIBLE)
+					tvRest.setVisibility(View.GONE);
+			}
 		}
 	}
 }

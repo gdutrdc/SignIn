@@ -51,4 +51,9 @@
     <string name="signing_in">正在签到</string>
     <string name="list_had_sign_in">当前已签到学生列表</string>
     <string name="sign_in_by_barcode">通过二维码签到</string>
+
+    <!-- 各界面提示文本 -->
+    <string name="un_login">您尚未登录，请重新登录</string>
+    <string name="failed_to_get">获取失败</string>
+    <string name="un_sign_in">当前课程签到结果尚未提交</string>
 </resources>

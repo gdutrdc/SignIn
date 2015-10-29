@@ -29,6 +29,7 @@ public class TchClassActivity extends AbsClassActivity {
 	protected void onFABClick(FloatingActionButton fab) {
 		Intent intent = new Intent(this, TchSignInActivity.class);
 		intent.putExtra("class", mClass);
+		intent.putExtra("type",TchStudentListActivity.TYPE_ALL);
 		startActivity(intent);
 	}
 

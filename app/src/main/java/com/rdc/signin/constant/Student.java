@@ -6,6 +6,7 @@ package com.rdc.signin.constant;
 public class Student {
 	private String account;
 	private String name;
+	private String signInTime;
 	private int rest;
 	private int signtimes;
 
@@ -15,6 +16,14 @@ public class Student {
 
 	public void setSigntimes(int signtimes) {
 		this.signtimes = signtimes;
+	}
+
+	public String getSignInTime() {
+		return signInTime;
+	}
+
+	public void setSignInTime(String signInTime) {
+		this.signInTime = signInTime;
 	}
 
 	public String getAccount() {

@@ -56,26 +56,37 @@ public class ConnectConfig {
 		public static final String RESPONSE_MAC = "mac";
 		public static final String RESPONSE_TEACHER_NAME = "teachername";
 		public static final String RESPONSE_REST = "rest";
-		public static final String RESPONSE_SIGNTIMES = "signtimes";
+		public static final String RESPONSE_SIGN_TIMES = "signtimes";
 	}
 
-	public static class GetStudentList{
-		public static final String URL = HOST +"Teacher/Student/GetStudentList";
+	public static class GetStudentList {
+		public static final String URL_ALL = HOST + "Teacher/Student/GetStudentList";
+		public static final String URL_CURRENT = HOST + "Teacher/Class/getCurStudents";
 
-		public static final String REQUEST_CLASS_ID="classId";
+		public static final String REQUEST_CLASS_ID = "classId";
+		public static final String REQUEST_DATE = "date";
 
 		public static final String RESPONSE_ACCOUNT = "account";
 		public static final String RESPONSE_NAME = "name";
 		public static final String RESPONSE_REST = "rest";
+		public static final String RESPONSE_TIME = "time";
 		public static final String RESPONSE_SIGN_TIMES = "signtimes";
 	}
 
-	public static class SignIn{
-		public static final String URL_STD = HOST+"/Student/Class/doSignInAction";
+	public static class SignIn {
+		public static final String URL_STD = HOST + "Student/Class/doSignInAction";
 
-		public static final String RESPONSE_CLASS_ID="classId";
-		public static final String RESPONSE_STUDENT_ID="studentId";
+		public static final String RESPONSE_CLASS_ID = "classId";
+		public static final String RESPONSE_STUDENT_ID = "studentId";
 		public static final String RESPONSE_VALUE = "value";
 		public static final String RESPONSE_TIME = "time";
 	}
+
+	public static class AddClassRecord {
+		public static final String URL = HOST + "Teacher/Class/addClassRecord";
+
+		public static final String RESPONSE_CLASS_ID = "classId";
+		public static final String RESPONSE_DATE = "date";
+	}
+
 }

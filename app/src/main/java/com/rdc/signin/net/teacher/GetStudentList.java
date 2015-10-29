@@ -39,7 +39,7 @@ public class GetStudentList extends BaseConnect {
 
 	@Override
 	protected String getUrl() {
-		return ConnectConfig.GetStudentList.URL;
+		return ConnectConfig.GetStudentList.URL_ALL;
 	}
 
 	@Override

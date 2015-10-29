@@ -2,7 +2,8 @@
 <resources>
 
     <style name="AppTheme.FABStyle">
-        <item name="borderWidth">0dp</item>
+        <item name="borderWidth">0.1dp</item>
+        <item name="android:elevation">6dp</item>
         <item name="android:layout_margin">16dp</item>
     </style>
 

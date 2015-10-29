@@ -4,16 +4,19 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/selectable_item_background"
                 android:clickable="true"
-                android:gravity="center_vertical"
                 android:minHeight="72dp"
                 android:orientation="vertical"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp">
 
     <TextView
         android:id="@+id/tv_first_line"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/tch_student_rest"
+        android:singleLine="true"
         android:text="首行-样本文字测试"
         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"/>
 
@@ -22,6 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_first_line"
+        android:singleLine="true"
         android:text="第二行-样本文字测试"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
 
@@ -38,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_below="@id/tch_student_rest"
+        android:layout_alignParentBottom="true"
         android:text="签到次数"
         android:textSize="12sp"/>
 

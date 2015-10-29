@@ -53,8 +53,14 @@ public class JSONUtils {
 			student = new Student();
 			student.setAccount(jsonObject.getString(ConnectConfig.GetStudentList.RESPONSE_ACCOUNT));
 			student.setName(jsonObject.getString(ConnectConfig.GetStudentList.RESPONSE_NAME));
-			student.setRest(jsonObject.getInt(ConnectConfig.GetStudentList.RESPONSE_REST));
-			student.setSigntimes(jsonObject.getInt(ConnectConfig.GetStudentList.RESPONSE_SIGN_TIMES));
+			try {
+				//当前已签到的
+				student.setSignInTime(jsonObject.getString(ConnectConfig.GetStudentList.RESPONSE_TIME));
+			} catch (JSONException e) {
+				//全部学生
+				student.setSigntimes(jsonObject.getInt(ConnectConfig.GetStudentList.RESPONSE_SIGN_TIMES));
+				student.setRest(jsonObject.getInt(ConnectConfig.GetStudentList.RESPONSE_REST));
+			}
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -121,7 +127,7 @@ public class JSONUtils {
 			stdClass.setTeacherName(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_TEACHER_NAME));
 			stdClass.setMac(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_MAC));
 			stdClass.setRest(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_REST));
-			stdClass.setSignTimes(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_SIGNTIMES));
+			stdClass.setSignTimes(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_SIGN_TIMES));
 			stdClass.setSum(jsonObject.getString(ConnectConfig.GetClassList.RESPONSE_SUM));
 		} catch (JSONException e) {
 			e.printStackTrace();
