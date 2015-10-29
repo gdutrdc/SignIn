@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,8 +18,9 @@ import android.widget.Toast;
 
 import com.rdc.signin.R;
 import com.rdc.signin.constant.TchClass;
+import com.rdc.signin.net.control.ConnectListener;
+import com.rdc.signin.net.teacher.AddClassRecord;
 import com.rdc.signin.ui.common.ToolbarActivity;
-import com.rdc.signin.ui.widget.FloatingActionButton;
 import com.rdc.signin.ui.widget.HotspotView;
 import com.rdc.signin.utils.DialogUtils;
 import com.rdc.signin.utils.UIUtils;
@@ -110,7 +112,7 @@ public class TchSignInActivity extends ToolbarActivity implements View.OnClickLi
 					}
 					mFAB.setImageDrawable(getResources().
 							getDrawable(R.drawable.ic_wifi_tethering_white_24dp));
-				}else{
+				} else {
 					DialogUtils.dismissAllDialog();
 					mHotspotView.setAnimating(false);
 					mTvSignInTips.setVisibility(View.GONE);
@@ -158,6 +160,10 @@ public class TchSignInActivity extends ToolbarActivity implements View.OnClickLi
 				startActivity(intent);
 				break;
 			case R.id.tch_sign_in_had_sign_in_list:
+				Intent curStudentList = new Intent(this, TchStudentListActivity.class);
+				curStudentList.putExtra("type", TchStudentListActivity.TYPE_CURRENT);
+				curStudentList.putExtra("classId", mClass.getId());
+				startActivity(curStudentList);
 				break;
 		}
 		return super.onOptionsItemSelected(item);
@@ -173,13 +179,47 @@ public class TchSignInActivity extends ToolbarActivity implements View.OnClickLi
 					handler.sendEmptyMessage(CHECK_AP_STATE);
 					DialogUtils.showProgressDialog(this, "请稍候");
 				} else {
-					if(mWifiController.getWifiBack()) {
+					if (mWifiController.getWifiBack()) {
 						DialogUtils.showProgressDialog(this, "正在重新开启wifi...");
-					}else
-					DialogUtils.showProgressDialog(this,"请稍候");
+					} else
+						DialogUtils.showProgressDialog(this, "请稍候");
 					handler.sendEmptyMessage(RESTORE_WIFI_STATE);
 				}
 				break;
 		}
+	}
+
+	@Override
+	public void onBackPressed() {
+		new AlertDialog.Builder(this)
+				.setPositiveButton("提交", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						DialogUtils.showProgressDialog(TchSignInActivity.this, "正在提交");
+						addClassRecord();
+					}
+				})
+				.setMessage("是否提交本次签到信息(提交成功时退出该界面)")
+				.setTitle("提示")
+				.setNegativeButton("退出", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						finish();
+					}
+				})
+				.show();
+
+	}
+
+	private void addClassRecord() {
+		new AddClassRecord(mClass.getId(), new ConnectListener() {
+			@Override
+			public void onConnect(boolean isConnect, String reason, String response) {
+				if (isConnect) {
+					Toast.makeText(TchSignInActivity.this, "提交成功", Toast.LENGTH_SHORT).show();
+					finish();
+				}
+			}
+		}).connect();
 	}
 }

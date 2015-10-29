@@ -8,7 +8,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.rdc.signin.app.SignInApp;
 
-import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -56,33 +55,26 @@ public abstract class BaseConnect {
 
 
 	public void connect() {
-		try {
-			if (getUrl() == null)
-				throw new IOException("The request url is null");
-			StringRequest request = new StringRequest(getMethod(), getUrl(), new Response.Listener<String>() {
-				@Override
-				public void onResponse(String response) {
-					if (SignInApp.DEBUG)
-						Log.d(getTag(), response);
-					onResult(true, null, response);
-				}
-			}, new Response.ErrorListener() {
-				@Override
-				public void onErrorResponse(VolleyError error) {
-					onResult(false, error.getMessage(), null);
-					error.printStackTrace();
-				}
-			}) {
-				@Override
-				protected Map<String, String> getParams() throws AuthFailureError {
-					return getRequestParams();
-				}
-			};
-			NetworkControl.getInstance().addRequest(request, null);
-		} catch (IOException e) {
-			onResult(false, e.getMessage(), null);
-			e.printStackTrace();
-		}
+		StringRequest request = new StringRequest(getMethod(), getUrl(), new Response.Listener<String>() {
+			@Override
+			public void onResponse(String response) {
+				if (SignInApp.DEBUG)
+					Log.d(getTag(), response);
+				onResult(true, null, response);
+			}
+		}, new Response.ErrorListener() {
+			@Override
+			public void onErrorResponse(VolleyError error) {
+				onResult(false, error.getMessage(), null);
+				error.printStackTrace();
+			}
+		}) {
+			@Override
+			protected Map<String, String> getParams() throws AuthFailureError {
+				return getRequestParams();
+			}
+		};
+		NetworkControl.getInstance().addRequest(request, null);
 	}
 
 }

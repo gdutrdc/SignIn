@@ -23,12 +23,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:visibility="gone"
         android:text="@string/signing_in"
-        android:textAppearance="@style/TextAppearance.AppCompat.Subhead.Inverse"/>
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead.Inverse"
+        android:visibility="gone"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/tch_sign_in_fab"
+        style="@style/AppTheme.FABStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
