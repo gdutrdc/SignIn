@@ -1,6 +1,7 @@
 package com.rdc.signin.ui.teacher;
 
 import android.content.DialogInterface;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,14 +33,18 @@ import com.google.zxing.decode.FinishListener;
 import com.google.zxing.decode.InactivityTimer;
 import com.google.zxing.widget.ViewfinderView;
 import com.rdc.signin.R;
+import com.rdc.signin.constant.Student;
+import com.rdc.signin.database.TchRegSQLiteHelper;
 import com.rdc.signin.ui.adapter.TchScanListAdapter;
+import com.rdc.signin.utils.QRCodeUtils;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 
 public final class TchScanActivity extends AppCompatActivity implements
 		SurfaceHolder.Callback {
@@ -58,6 +64,9 @@ public final class TchScanActivity extends AppCompatActivity implements
 	private AmbientLightManager ambientLightManager;
 	private TchScanListAdapter mListAdapter;
 	private String mClassId;
+	private SQLiteDatabase mDatabase;
+	private TchRegSQLiteHelper mHelper;
+	private String mDate = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA).format(new Date());
 
 	public ViewfinderView getViewfinderView() {
 		return viewfinderView;
@@ -75,7 +84,7 @@ public final class TchScanActivity extends AppCompatActivity implements
 	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
 
-		setTheme(android.support.v7.appcompat.R.style.Theme_AppCompat);
+		setTheme(android.support.v7.appcompat.R.style.Theme_AppCompat_NoActionBar);
 		Window window = getWindow();
 		window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		setContentView(R.layout.activity_tch_scan);
@@ -91,7 +100,9 @@ public final class TchScanActivity extends AppCompatActivity implements
 		beepManager = new BeepManager(this);
 		ambientLightManager = new AmbientLightManager(this);
 
+		mHelper = new TchRegSQLiteHelper(this);
 		mListAdapter = new TchScanListAdapter(this);
+		mListAdapter.setDataList(mHelper.getDataFromLocal(mClassId, mDate));
 
 		mLvHadIn.setAdapter(mListAdapter);
 	}
@@ -121,8 +132,7 @@ public final class TchScanActivity extends AppCompatActivity implements
 		// TODO Auto-generated method stub
 		if (item.getItemId() == android.R.id.home) {
 			safeFinish();
-		}
-		else if (item.getItemId() == R.id.mi_light_tch_check_message) {
+		} else if (item.getItemId() == R.id.mi_light_tch_check_message) {
 			if (isTorchOn) {
 				isTorchOn = false;
 				cameraManager.setTorch(false);
@@ -142,9 +152,7 @@ public final class TchScanActivity extends AppCompatActivity implements
 
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-						// TODO Auto-generated method stub
 						finish();
-						mListAdapter.closeDatabase();
 					}
 				}).setNegativeButton("取消", null).show();
 
@@ -181,15 +189,6 @@ public final class TchScanActivity extends AppCompatActivity implements
 		characterSet = null;
 	}
 
-	/**
-	 * 获得课程Id
-	 * 
-	 * @return 课程Id
-	 */
-	public String getClassId() {
-		return mClassId;
-	}
-
 	@Override
 	protected void onPause() {
 		if (handler != null) {
@@ -217,11 +216,11 @@ public final class TchScanActivity extends AppCompatActivity implements
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		switch (keyCode) {
-		case KeyEvent.KEYCODE_CAMERA:// 禁用相机拍照按键（如果有）
-			return true;
-		case KeyEvent.KEYCODE_BACK:
-			safeFinish();
-			return true;
+			case KeyEvent.KEYCODE_CAMERA:// 禁用相机拍照按键（如果有）
+				return true;
+			case KeyEvent.KEYCODE_BACK:
+				safeFinish();
+				return true;
 		}
 		return super.onKeyDown(keyCode, event);
 	}
@@ -257,13 +256,15 @@ public final class TchScanActivity extends AppCompatActivity implements
 
 	@Override
 	public void surfaceChanged(SurfaceHolder holder, int format, int width,
-			int height) {
+	                           int height) {
 
 	}
 
-	/** 处理扫描到的结果 */
+	/**
+	 * 处理扫描到的结果
+	 */
 	public void handleDecode(final Result rawResult, Bitmap barcode,
-			float scaleFactor) {
+	                         float scaleFactor) {
 		inactivityTimer.onActivity();
 		beepManager.playBeepSoundAndVibrate();
 
@@ -272,14 +273,22 @@ public final class TchScanActivity extends AppCompatActivity implements
 		AlertDialog.Builder dialog = new AlertDialog.Builder(this);
 		dialog.setTitle("签到学生");
 		// TODO 对扫描到的信息进行判断，判断是否为学生学号，并判断该生是否存在于该课程名单中
-		Pattern r = Pattern.compile("\\d{10}");
-		Matcher m = r.matcher(rawResult.getText());
-		if(!(m.find()||rawResult.getText().length()==10)){
+		final Student student = new Student();
+		try {
+			String s = QRCodeUtils.readQRCode(rawResult.getText());
+			String[] datas = s.split("/",2);
+			for (String data : datas)
+				Log.e("Tag", s + " - " + data);
+			student.setAccount(datas[0]);
+			student.setName(datas[1]);
+			student.setSignInTime(new SimpleDateFormat("HH:mm:ss", Locale.CHINA).format(new Date()));
+		} catch (Exception e) {
+			e.printStackTrace();
 			displayDialog("这不是一个学生的二维码！");
 			return;
 		}
-		
-		dialog.setMessage(rawResult.getText());
+
+		dialog.setMessage(student.getName() + "\n" + student.getAccount() + "\n签到时间:" + student.getSignInTime());
 		dialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
@@ -290,7 +299,7 @@ public final class TchScanActivity extends AppCompatActivity implements
 		dialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				mListAdapter.addData(rawResult.getText());
+				addData(student);
 				handler.sendEmptyMessage(R.id.restart_preview);
 			}
 		});
@@ -358,4 +367,35 @@ public final class TchScanActivity extends AppCompatActivity implements
 				}).show();
 
 	}
+
+	public void addData(Student student) {
+		for (Student s : mListAdapter.getDataList()) {
+			if (s.getAccount().equals(student.getAccount())) {
+				Toast.makeText(this, "该学生的二维码已扫描过", Toast.LENGTH_SHORT).show();
+				return;
+			}
+		}
+		addItem(student);
+	}
+
+	private void addItem(final Student student) {
+		ArrayList<Student> list = mListAdapter.getDataList();
+		list.add(student);
+		mListAdapter.setDataList(list);
+		mListAdapter.notifyDataSetChanged();
+
+		if (mHelper == null) {
+			mHelper = new TchRegSQLiteHelper(this);
+		}
+		try {
+			mHelper.insertData(new String[]{mClassId, mDate,
+					student.getAccount(), student.getName(),
+					student.getSignInTime()});
+			makeSucceedToast();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+
 }

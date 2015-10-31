@@ -156,7 +156,7 @@ public class TchSignInActivity extends ToolbarActivity implements View.OnClickLi
 		switch (item.getItemId()) {
 			case R.id.tch_sign_in_by_barcode:
 				Intent intent = new Intent(this, TchScanActivity.class);
-				intent.putExtra("classID", mClass.getId());
+				intent.putExtra("classId", mClass.getId());
 				startActivity(intent);
 				break;
 			case R.id.tch_sign_in_had_sign_in_list:
@@ -164,6 +164,10 @@ public class TchSignInActivity extends ToolbarActivity implements View.OnClickLi
 				curStudentList.putExtra("type", TchStudentListActivity.TYPE_CURRENT);
 				curStudentList.putExtra("classId", mClass.getId());
 				startActivity(curStudentList);
+				break;
+			case R.id.tch_sign_in_do_sign:
+				DialogUtils.showProgressDialog(TchSignInActivity.this, "正在提交");
+				addClassRecord();
 				break;
 		}
 		return super.onOptionsItemSelected(item);
@@ -199,7 +203,7 @@ public class TchSignInActivity extends ToolbarActivity implements View.OnClickLi
 						addClassRecord();
 					}
 				})
-				.setMessage("是否提交本次签到信息(提交成功时退出该界面)")
+				.setMessage("是否提交本次签到信息")
 				.setTitle("提示")
 				.setNegativeButton("退出", new DialogInterface.OnClickListener() {
 					@Override
@@ -217,7 +221,6 @@ public class TchSignInActivity extends ToolbarActivity implements View.OnClickLi
 			public void onConnect(boolean isConnect, String reason, String response) {
 				if (isConnect) {
 					Toast.makeText(TchSignInActivity.this, "提交成功", Toast.LENGTH_SHORT).show();
-					finish();
 				}
 			}
 		}).connect();

@@ -1,22 +1,25 @@
 package com.rdc.signin.database;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.rdc.signin.constant.Student;
+
+import java.util.ArrayList;
 
 public class TchRegSQLiteHelper extends SQLiteOpenHelper {
 	private static int version = 1;// 数据库名称
 	private static String name = "registration.db";
-	private Context mContext;
 
 	public TchRegSQLiteHelper(Context context) {
 		super(context, name, null, version);
-		mContext = context;
 	}
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		String sql = "create table result(_id integer primary key autoincrement,classId varchar(16),date varchar(16),account varchar(16))";
+		String sql = "create table result(_id integer primary key autoincrement,classId varchar(16),date varchar(16),account varchar(16),name text,sign_in_time varchar(16))";
 		db.execSQL(sql);
 	}
 
@@ -26,4 +29,27 @@ public class TchRegSQLiteHelper extends SQLiteOpenHelper {
 
 	}
 
+	public void insertData( String[] params) {
+		SQLiteDatabase db = getWritableDatabase();
+		String sql = "insert into result(classId,date,account,name,sign_in_time) values(?,?,?,?,?)";
+		db.execSQL(sql, params);
+		db.close();
+	}
+
+	public ArrayList<Student> getDataFromLocal(String classId, String date) {
+		SQLiteDatabase db = getReadableDatabase();
+		ArrayList<Student> list = new ArrayList<>();
+		Cursor cursor = db.query("result", null, "classId=? and date=?",
+				new String[]{classId, date}, null, null, null);
+		while (cursor.moveToNext()) {
+			Student student = new Student();
+			student.setAccount(cursor.getString(cursor.getColumnIndex("account")));
+			student.setName(cursor.getString(cursor.getColumnIndex("name")));
+			student.setSignInTime(cursor.getString(cursor.getColumnIndex("sign_in_time")));
+			list.add(student);
+		}
+		db.close();
+		cursor.close();
+		return list;
+	}
 }

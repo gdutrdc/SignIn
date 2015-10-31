@@ -85,10 +85,11 @@ public class JniMethods {
 				Log.d("key", key);
 			// output = cipher.doFinal(Base64.decode(input,Base64.URL_SAFE));
 			output = cipher.doFinal(RDCBase64.decodeBase64(input));
+			return new String(output);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return new String(output);
+		return null;
 	}
 
 }

@@ -10,4 +10,7 @@
     <item
         android:id="@+id/tch_sign_in_by_barcode"
         android:title="@string/sign_in_by_barcode"/>
+    <item
+        android:id="@+id/tch_sign_in_do_sign"
+        android:title="@string/sign_in_do_sign"/>
 </menu>

@@ -28,7 +28,8 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/Theme.AppCompat.Light"/>
+                app:popupTheme="@style/Theme.AppCompat.Light"
+                app:theme="@style/AppTheme.Dark"/>
 
 
         </android.support.design.widget.CollapsingToolbarLayout>
@@ -39,6 +40,7 @@
         android:id="@+id/class_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="?android:attr/windowBackground"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
