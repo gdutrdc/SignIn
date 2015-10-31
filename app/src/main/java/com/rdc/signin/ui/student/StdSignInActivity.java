@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.rdc.signin.R;
@@ -20,6 +21,7 @@ import com.rdc.signin.ui.common.ToolbarActivity;
 import com.rdc.signin.ui.widget.ScanView;
 import com.rdc.signin.utils.DialogUtils;
 import com.rdc.signin.utils.JniMethods;
+import com.rdc.signin.utils.QRCodeUtils;
 import com.rdc.signin.utils.UIUtils;
 import com.rdc.signin.utils.WifiController;
 
@@ -87,17 +89,22 @@ public class StdSignInActivity extends ToolbarActivity implements View.OnClickLi
 					break;
 				case SEARCH_TIME_OUT:
 					if (markNum < 2) {
-						stopSignIn();
-						new AlertDialog.Builder(StdSignInActivity.this)
-								.setTitle("提示")
-								.setMessage("搜索不到老师的信号，请确定Wifi可用。否则点击右上角菜单请进行二维码签到")
-								.setPositiveButton("确定", null)
-								.setNegativeButton("重试", new DialogInterface.OnClickListener() {
-									@Override
-									public void onClick(DialogInterface dialog, int which) {
-										startSignIn();
-									}
-								}).show();
+						try {
+							new AlertDialog.Builder(StdSignInActivity.this)
+									.setTitle("提示")
+									.setMessage("搜索不到老师的信号，请确定Wifi可用。否则点击右上角菜单请进行二维码签到")
+									.setPositiveButton("确定", null)
+									.setNegativeButton("重试", new DialogInterface.OnClickListener() {
+										@Override
+										public void onClick(DialogInterface dialog, int which) {
+											startSignIn();
+										}
+									}).show();
+							stopSignIn();
+						} catch (Exception e) {
+							//如果超时时已不在此界面
+							e.printStackTrace();
+						}
 					}
 					break;
 				case STOP_ANIMATION:
@@ -170,6 +177,19 @@ public class StdSignInActivity extends ToolbarActivity implements View.OnClickLi
 		switch (item.getItemId()) {
 			case R.id.std_sign_in_barcode:
 				//TODO 启动二维码界面
+				ImageView iv = new ImageView(this);
+				new AlertDialog.Builder(this)
+						.setTitle("请教师扫描此二维码")
+						.setView(iv)
+						.setNegativeButton("完成", null)
+						.show();
+				try {
+					iv.setImageBitmap(QRCodeUtils.createQRCode(
+							SignInApp.user.getAccount() + "/" + SignInApp.user.getName(),
+							(int) UIUtils.convertDpToPixel(160, this)));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				break;
 		}
 		return super.onOptionsItemSelected(item);
@@ -199,4 +219,6 @@ public class StdSignInActivity extends ToolbarActivity implements View.OnClickLi
 		isSearching = false;
 		handler.sendEmptyMessage(STOP_ANIMATION);
 	}
+
+
 }
