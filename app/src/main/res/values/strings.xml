@@ -13,8 +13,10 @@
     <string name="bind_mac">绑定设备</string>
     <string name="bind_mac_tips">每个账号都需要绑定一台设备，这意味着当你绑定了当前这台设备后，在其他设备上就不能再登录你的账号了。如果你想把绑定设备换成另一台，你需要做的是联系管理员解绑设备。</string>
 
+    <!-- Drawer -->
     <string name="open_drawer">Open Drawer</string>
     <string name="close_drawer">Close Drawer</string>
+    <string name="quit">退出</string>
 
     <!-- 设置相关 -->
     <string name="settings">设置</string>
@@ -48,7 +50,7 @@
 
     <!-- 签到界面 -->
     <string name="start_sign_in">开始签到</string>
-    <string name="signing_in">正在签到</string>
+    <string name="signing_in">签到进行中</string>
     <string name="list_had_sign_in">当前已签到学生列表</string>
     <string name="sign_in_do_sign">提交本次签到信息</string>
     <string name="sign_in_by_barcode">通过二维码签到</string>
@@ -56,5 +58,8 @@
     <!-- 各界面提示文本 -->
     <string name="un_login">您尚未登录，请重新登录</string>
     <string name="failed_to_get">获取失败</string>
+    <string name="commit_success">提交成功</string>
+    <string name="loading">加载中</string>
+    <string name="please_wait">请稍候</string>
     <string name="un_sign_in">当前课程签到结果尚未提交</string>
 </resources>

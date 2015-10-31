@@ -38,12 +38,12 @@ public class TchSignInActivity extends ToolbarActivity implements View.OnClickLi
 
 	private static final int CHECK_AP_STATE = 0;
 	private static final int CHANGE_AP_STATE_SUCCEED = 1;
-	private static final int CHECK_COMMIT_STATE = 2;
+	private static final int COMMITED = 2;
 	private static final int RESTORE_WIFI_STATE = 3;
 
 	private WifiController mWifiController;
 
-	private boolean isCommited;
+	private boolean wantToLeave = false;
 	private boolean targetApState;
 
 	private TchClass mClass;
@@ -80,24 +80,6 @@ public class TchSignInActivity extends ToolbarActivity implements View.OnClickLi
 				mTvSignInTips.startAnimation(mTipsAnimation);
 				mFAB.setImageDrawable(getResources().
 						getDrawable(R.drawable.ic_portable_wifi_off_white_24dp));
-			} else if (msg.what == CHECK_COMMIT_STATE) {
-				if (isCommited) {
-					DialogUtils.dismissAllDialog();
-					new AlertDialog.Builder(TchSignInActivity.this)
-							.setMessage("提交成功")
-							.setPositiveButton("确定并退出",
-									new DialogInterface.OnClickListener() {
-
-										@Override
-										public void onClick(
-												DialogInterface dialog,
-												int which) {
-											finish();
-
-										}
-									}).show();
-				} else
-					handler.sendEmptyMessageDelayed(CHECK_COMMIT_STATE, 200);
 			} else if (msg.what == RESTORE_WIFI_STATE) {
 				if (mWifiController.getWifiBack()) {
 					if (!mWifiController.isWifiEnabled()) {
@@ -120,6 +102,11 @@ public class TchSignInActivity extends ToolbarActivity implements View.OnClickLi
 					mFAB.setImageDrawable(getResources().
 							getDrawable(R.drawable.ic_wifi_tethering_white_24dp));
 				}
+			} else if (msg.what == COMMITED) {
+				DialogUtils.dismissAllDialog();
+				Toast.makeText(TchSignInActivity.this, R.string.commit_success, Toast.LENGTH_SHORT).show();
+				if (wantToLeave)
+					finish();
 			}
 		}
 
@@ -166,6 +153,7 @@ public class TchSignInActivity extends ToolbarActivity implements View.OnClickLi
 				startActivity(curStudentList);
 				break;
 			case R.id.tch_sign_in_do_sign:
+				wantToLeave = false;
 				DialogUtils.showProgressDialog(TchSignInActivity.this, "正在提交");
 				addClassRecord();
 				break;
@@ -199,13 +187,14 @@ public class TchSignInActivity extends ToolbarActivity implements View.OnClickLi
 				.setPositiveButton("提交", new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
+						wantToLeave = true;
 						DialogUtils.showProgressDialog(TchSignInActivity.this, "正在提交");
 						addClassRecord();
 					}
 				})
 				.setMessage("是否提交本次签到信息")
 				.setTitle("提示")
-				.setNegativeButton("退出", new DialogInterface.OnClickListener() {
+				.setNegativeButton(R.string.quit, new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						finish();
@@ -220,7 +209,7 @@ public class TchSignInActivity extends ToolbarActivity implements View.OnClickLi
 			@Override
 			public void onConnect(boolean isConnect, String reason, String response) {
 				if (isConnect) {
-					Toast.makeText(TchSignInActivity.this, "提交成功", Toast.LENGTH_SHORT).show();
+					handler.sendEmptyMessage(COMMITED);
 				}
 			}
 		}).connect();
