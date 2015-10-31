@@ -36,7 +36,7 @@ import com.rdc.signin.R;
 import com.rdc.signin.constant.Student;
 import com.rdc.signin.database.TchRegSQLiteHelper;
 import com.rdc.signin.net.control.ConnectListener;
-import com.rdc.signin.net.teacher.DoSignIn;
+import com.rdc.signin.net.teacher.DoSign;
 import com.rdc.signin.ui.adapter.TchScanListAdapter;
 import com.rdc.signin.utils.DialogUtils;
 import com.rdc.signin.utils.QRCodeUtils;
@@ -132,7 +132,6 @@ public final class TchScanActivity extends AppCompatActivity implements
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// TODO Auto-generated method stub
 		if (item.getItemId() == android.R.id.home) {
 			safeFinish();
 		} else if (item.getItemId() == R.id.mi_light_tch_check_message) {
@@ -160,7 +159,7 @@ public final class TchScanActivity extends AppCompatActivity implements
 			students[i] = list.get(i).getAccount();
 			times[i] = list.get(i).getSignInTime();
 		}
-		new DoSignIn(mClassId, students, times, new ConnectListener() {
+		new DoSign(mClassId, students, times, new ConnectListener() {
 			@Override
 			public void onConnect(boolean isConnect, String reason, String response) {
 				if (isConnect) {
@@ -301,7 +300,6 @@ public final class TchScanActivity extends AppCompatActivity implements
 
 		AlertDialog.Builder dialog = new AlertDialog.Builder(this);
 		dialog.setTitle("签到学生");
-		// TODO 对扫描到的信息进行判断，判断是否为学生学号，并判断该生是否存在于该课程名单中
 		final Student student = new Student();
 		try {
 			String s = QRCodeUtils.readQRCode(rawResult.getText());
