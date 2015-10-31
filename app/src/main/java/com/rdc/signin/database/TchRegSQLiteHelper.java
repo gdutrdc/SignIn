@@ -11,7 +11,9 @@ import java.util.ArrayList;
 
 public class TchRegSQLiteHelper extends SQLiteOpenHelper {
 	private static int version = 1;// 数据库名称
-	private static String name = "registration.db";
+	private static final String name = "registration.db";
+
+	private static final String TABLE_RESULT = "result";
 
 	public TchRegSQLiteHelper(Context context) {
 		super(context, name, null, version);
@@ -29,7 +31,7 @@ public class TchRegSQLiteHelper extends SQLiteOpenHelper {
 
 	}
 
-	public void insertData( String[] params) {
+	public void insertData(String[] params) {
 		SQLiteDatabase db = getWritableDatabase();
 		String sql = "insert into result(classId,date,account,name,sign_in_time) values(?,?,?,?,?)";
 		db.execSQL(sql, params);
@@ -39,7 +41,7 @@ public class TchRegSQLiteHelper extends SQLiteOpenHelper {
 	public ArrayList<Student> getDataFromLocal(String classId, String date) {
 		SQLiteDatabase db = getReadableDatabase();
 		ArrayList<Student> list = new ArrayList<>();
-		Cursor cursor = db.query("result", null, "classId=? and date=?",
+		Cursor cursor = db.query(TABLE_RESULT, null, "classId=? and date=?",
 				new String[]{classId, date}, null, null, null);
 		while (cursor.moveToNext()) {
 			Student student = new Student();
@@ -51,5 +53,11 @@ public class TchRegSQLiteHelper extends SQLiteOpenHelper {
 		db.close();
 		cursor.close();
 		return list;
+	}
+
+	public void deleteData(String classId, String date) {
+		SQLiteDatabase db = getWritableDatabase();
+		db.delete(TABLE_RESULT, "classId = ? and date =?", new String[]{classId, date});
+		db.close();
 	}
 }

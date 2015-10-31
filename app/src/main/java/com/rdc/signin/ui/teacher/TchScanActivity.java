@@ -35,7 +35,10 @@ import com.google.zxing.widget.ViewfinderView;
 import com.rdc.signin.R;
 import com.rdc.signin.constant.Student;
 import com.rdc.signin.database.TchRegSQLiteHelper;
+import com.rdc.signin.net.control.ConnectListener;
+import com.rdc.signin.net.teacher.DoSignIn;
 import com.rdc.signin.ui.adapter.TchScanListAdapter;
+import com.rdc.signin.utils.DialogUtils;
 import com.rdc.signin.utils.QRCodeUtils;
 
 import java.io.IOException;
@@ -142,8 +145,34 @@ public final class TchScanActivity extends AppCompatActivity implements
 				cameraManager.setTorch(true);
 				item.setIcon(R.drawable.ic_flash_on_white_24dp);
 			}
+		} else if (item.getItemId() == R.id.mi_tch_sign_in_commit_qrcode) {
+			DialogUtils.showProgressDialog(this, "提交中");
+			doSign();
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	private void doSign() {
+		String[] students = new String[mListAdapter.getCount()];
+		String[] times = new String[mListAdapter.getCount()];
+		ArrayList<Student> list = mListAdapter.getDataList();
+		for (int i = 0; i < list.size(); i++) {
+			students[i] = list.get(i).getAccount();
+			times[i] = list.get(i).getSignInTime();
+		}
+		new DoSignIn(mClassId, students, times, new ConnectListener() {
+			@Override
+			public void onConnect(boolean isConnect, String reason, String response) {
+				if (isConnect) {
+					DialogUtils.showTipsDialog(TchScanActivity.this, "提交成功");
+					mHelper.deleteData(mClassId, mDate);
+					mListAdapter.setDataList(mHelper.getDataFromLocal(mClassId, mDate));
+					mListAdapter.notifyDataSetChanged();
+				} else {
+					DialogUtils.showWaringDialog(TchScanActivity.this, reason);
+				}
+			}
+		}).connect();
 	}
 
 	private void safeFinish() {
@@ -276,7 +305,7 @@ public final class TchScanActivity extends AppCompatActivity implements
 		final Student student = new Student();
 		try {
 			String s = QRCodeUtils.readQRCode(rawResult.getText());
-			String[] datas = s.split("/",2);
+			String[] datas = s.split("/", 2);
 			for (String data : datas)
 				Log.e("Tag", s + " - " + data);
 			student.setAccount(datas[0]);

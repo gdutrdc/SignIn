@@ -74,19 +74,28 @@ public class ConnectConfig {
 	}
 
 	public static class SignIn {
-		public static final String URL_STD = HOST + "Student/Class/doSignInAction";
+		public static final String URL = HOST + "Student/Class/doSignInAction";
 
-		public static final String RESPONSE_CLASS_ID = "classId";
-		public static final String RESPONSE_STUDENT_ID = "studentId";
-		public static final String RESPONSE_VALUE = "value";
-		public static final String RESPONSE_TIME = "time";
+		public static final String REQUEST_CLASS_ID = "classId";
+		public static final String REQUEST_STUDENT_ID = "studentId";
+		public static final String REQUEST_VALUE = "value";
+		public static final String REQUEST_TIME = "time";
 	}
 
 	public static class AddClassRecord {
 		public static final String URL = HOST + "Teacher/Class/addClassRecord";
 
-		public static final String RESPONSE_CLASS_ID = "classId";
-		public static final String RESPONSE_DATE = "date";
+		public static final String REQUEST_CLASS_ID = "classId";
+		public static final String REQUEST_DATE = "date";
+	}
+
+	public static class DoSign {
+		public static final String URL = HOST + "Teacher/Class/doSignAction";
+
+		public static final String REQUEST_CLASS_ID = "classId";
+		public static final String REQUEST_STUDENTS = "students";
+		public static final String REQUEST_TIMES = "times";
+		public static final String REQUEST_DATE = "date";
 	}
 
 }

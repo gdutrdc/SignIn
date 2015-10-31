@@ -39,22 +39,22 @@ public class SignIn extends BaseConnect {
 	protected Map<String, String> getRequestParams() {
 		HashMap<String, String> params = new HashMap<>();
 		params.put(ConnectConfig.TOKEN, SignInApp.user.getToken());
-		params.put(ConnectConfig.SignIn.RESPONSE_CLASS_ID, classId);
-		params.put(ConnectConfig.SignIn.RESPONSE_STUDENT_ID, studentId);
+		params.put(ConnectConfig.SignIn.REQUEST_CLASS_ID, classId);
+		params.put(ConnectConfig.SignIn.REQUEST_STUDENT_ID, studentId);
 		Date date = new Date();
-		params.put(ConnectConfig.SignIn.RESPONSE_TIME, new SimpleDateFormat("HH:mm:ss", Locale.CHINA).format(date));
+		params.put(ConnectConfig.SignIn.REQUEST_TIME, new SimpleDateFormat("HH:mm:ss", Locale.CHINA).format(date));
 
 		JniMethods jniMethods = JniMethods.getInstance();
 		String value = mac + "|" + new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA).format(date);
 		value = jniMethods.encrypt(value);
 		value = new String(RDCBase64.encodeBase64(value.getBytes()));
-		params.put(ConnectConfig.SignIn.RESPONSE_VALUE, value);
+		params.put(ConnectConfig.SignIn.REQUEST_VALUE, value);
 		return params;
 	}
 
 	@Override
 	protected String getUrl() {
-		return ConnectConfig.SignIn.URL_STD;
+		return ConnectConfig.SignIn.URL;
 	}
 
 	@Override

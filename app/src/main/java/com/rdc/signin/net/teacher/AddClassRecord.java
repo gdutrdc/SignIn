@@ -32,8 +32,8 @@ public class AddClassRecord extends BaseConnect {
 	@Override
 	protected Map<String, String> getRequestParams() {
 		HashMap<String, String> params = new HashMap<>();
-		params.put(ConnectConfig.AddClassRecord.RESPONSE_CLASS_ID, classId);
-		params.put(ConnectConfig.AddClassRecord.RESPONSE_DATE,
+		params.put(ConnectConfig.AddClassRecord.REQUEST_CLASS_ID, classId);
+		params.put(ConnectConfig.AddClassRecord.REQUEST_DATE,
 				new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA).format(new Date()));
 		params.put(ConnectConfig.TOKEN, SignInApp.user.getToken());
 		return params;

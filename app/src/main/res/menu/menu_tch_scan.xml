@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" >
-    
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
 
     <item
         android:id="@+id/mi_light_tch_check_message"
         android:icon="@drawable/ic_flash_off_white_24dp"
-        app:showAsAction="always|withText"
         android:orderInCategory="1"
-        android:title="开/关灯"/>
+        android:title="开/关灯"
+        app:showAsAction="always|withText"/>
+    <item
+        android:id="@+id/mi_tch_sign_in_commit_qrcode"
+        android:title="@string/sign_in_commit_qrcode"/>
 </menu>
