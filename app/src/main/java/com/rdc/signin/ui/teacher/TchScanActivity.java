@@ -36,7 +36,7 @@ import com.rdc.signin.R;
 import com.rdc.signin.constant.Student;
 import com.rdc.signin.database.TchRegSQLiteHelper;
 import com.rdc.signin.net.control.ConnectListener;
-import com.rdc.signin.net.teacher.DoSign;
+import com.rdc.signin.net.teacher.DoSignAction;
 import com.rdc.signin.ui.adapter.TchScanListAdapter;
 import com.rdc.signin.utils.DialogUtils;
 import com.rdc.signin.utils.QRCodeUtils;
@@ -159,7 +159,7 @@ public final class TchScanActivity extends AppCompatActivity implements
 			students[i] = list.get(i).getAccount();
 			times[i] = list.get(i).getSignInTime();
 		}
-		new DoSign(mClassId, students, times, new ConnectListener() {
+		new DoSignAction(mClassId, students, times, new ConnectListener() {
 			@Override
 			public void onConnect(boolean isConnect, String reason, String response) {
 				if (isConnect) {
