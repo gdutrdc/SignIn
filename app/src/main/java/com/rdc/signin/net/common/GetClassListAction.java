@@ -14,10 +14,10 @@ import java.util.Map;
 /**
  * Created by seasonyuu on 15/9/21.
  */
-public class GetClassList extends BaseConnect {
+public class GetClassListAction extends BaseConnect {
 	public final int RESULT_SUCCESS = 1;
 
-	public GetClassList(ConnectListener listener) {
+	public GetClassListAction(ConnectListener listener) {
 		super(listener);
 	}
 
@@ -40,7 +40,7 @@ public class GetClassList extends BaseConnect {
 
 	@Override
 	protected String getTag() {
-		return GetClassList.class.getSimpleName();
+		return GetClassListAction.class.getSimpleName();
 	}
 
 	@Override

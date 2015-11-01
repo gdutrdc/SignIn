@@ -18,12 +18,12 @@ import java.util.Map;
 /**
  * Created by seasonyuu on 15/10/28.
  */
-public class SignIn extends BaseConnect {
+public class DoSignInAction extends BaseConnect {
 	private String classId;
 	private String studentId;
 	private String mac;
 
-	public SignIn(String classId, String studentId, String mac, ConnectListener listener) {
+	public DoSignInAction(String classId, String studentId, String mac, ConnectListener listener) {
 		super(listener);
 		this.classId = classId;
 		this.studentId = studentId;
@@ -59,7 +59,7 @@ public class SignIn extends BaseConnect {
 
 	@Override
 	protected String getTag() {
-		return SignIn.class.getSimpleName();
+		return DoSignInAction.class.getSimpleName();
 	}
 
 	@Override

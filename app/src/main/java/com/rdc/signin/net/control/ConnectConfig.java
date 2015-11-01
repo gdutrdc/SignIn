@@ -29,7 +29,7 @@ public class ConnectConfig {
 
 	}
 
-	public static class BindMac {
+	public static class RegisteMac {
 		public static final String URL_STD = HOST + "Student/Registe/registeMac";
 		public static final String URL_TCH = HOST + "Teacher/Registe/registeMac";
 

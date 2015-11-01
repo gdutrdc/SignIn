@@ -17,7 +17,7 @@ import com.rdc.signin.R;
 import com.rdc.signin.app.SignInApp;
 import com.rdc.signin.constant.User;
 import com.rdc.signin.net.control.ConnectListener;
-import com.rdc.signin.net.registe.Login;
+import com.rdc.signin.net.registe.DoLoginAction;
 import com.rdc.signin.ui.common.ToolbarActivity;
 import com.rdc.signin.ui.student.StdMainActivity;
 import com.rdc.signin.ui.teacher.TchMainActivity;
@@ -138,7 +138,7 @@ public class LoginActivity extends ToolbarActivity {
 	}
 
 	private void login(String account, String password) {
-		new Login(account, password,
+		new DoLoginAction(account, password,
 				((RadioButton) findViewById(R.id.login_radio_std)).isChecked() ?
 						User.IDENTITY_STUDENT : User.IDENTITY_TEACHER, new ConnectListener() {
 			@Override
@@ -160,7 +160,7 @@ public class LoginActivity extends ToolbarActivity {
 	private void readUser(User user) {
 		String mac = new WifiController(this).getLocalMacAddress();
 		if (user.getMac() == null || user.getMac().equals("null")) {
-			Intent intent = new Intent(this, BindMacActivity.class);
+			Intent intent = new Intent(this, RegisteMacActivity.class);
 			SignInApp.user = user;
 			intent.putExtra("user", user);
 			startActivity(intent);

@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.rdc.signin.R;
 import com.rdc.signin.app.SignInApp;
 import com.rdc.signin.net.control.ConnectListener;
-import com.rdc.signin.net.student.SignIn;
+import com.rdc.signin.net.student.DoSignInAction;
 import com.rdc.signin.ui.common.ToolbarActivity;
 import com.rdc.signin.ui.widget.ScanView;
 import com.rdc.signin.utils.DialogUtils;
@@ -143,7 +143,7 @@ public class StdSignInActivity extends ToolbarActivity implements View.OnClickLi
 	}
 
 	private void doSignIn() {
-		new SignIn(classId, SignInApp.user.getAccount(), teacherMac, new ConnectListener() {
+		new DoSignInAction(classId, SignInApp.user.getAccount(), teacherMac, new ConnectListener() {
 			@Override
 			public void onConnect(boolean isConnect, String reason, String response) {
 				if (isConnect) {

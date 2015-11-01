@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * Created by seasonyuu on 15/9/17.
  */
-public class Login extends BaseConnect {
+public class DoLoginAction extends BaseConnect {
 	private String account;
 	private String password;
 	private int identity;
@@ -22,7 +22,7 @@ public class Login extends BaseConnect {
 	private final int RESULT_ACCOUNT_NOT_EXIST = 2;
 	private final int RESULT_PASSWORD_WRONG = 3;
 
-	public Login(String account, String password, int identity, ConnectListener listener) {
+	public DoLoginAction(String account, String password, int identity, ConnectListener listener) {
 		super(listener);
 		this.identity = identity;
 		this.account = account;
@@ -54,7 +54,7 @@ public class Login extends BaseConnect {
 
 	@Override
 	protected String getTag() {
-		return Login.class.getSimpleName();
+		return DoLoginAction.class.getSimpleName();
 	}
 
 	@Override

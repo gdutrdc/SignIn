@@ -35,7 +35,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.register.InfoActivity"/>
-        <activity android:name=".ui.register.BindMacActivity"/>
+        <activity android:name=".ui.register.RegisteMacActivity"/>
         <activity android:name=".ui.student.StdClassActivity"/>
         <activity android:name=".ui.teacher.TchClassActivity"/>
         <activity android:name=".ui.student.StdMainActivity"/>
