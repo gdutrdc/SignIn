@@ -10,7 +10,7 @@ import com.rdc.signin.R;
 import com.rdc.signin.app.SignInApp;
 import com.rdc.signin.constant.User;
 import com.rdc.signin.net.control.ConnectListener;
-import com.rdc.signin.net.registe.RegisterMac;
+import com.rdc.signin.net.registe.RegisteMac;
 import com.rdc.signin.ui.common.ToolbarActivity;
 import com.rdc.signin.ui.student.StdMainActivity;
 import com.rdc.signin.ui.teacher.TchMainActivity;
@@ -40,7 +40,7 @@ public class RegisteMacActivity extends ToolbarActivity {
 	}
 
 	private void bindMac() {
-		new RegisterMac(new ConnectListener() {
+		new RegisteMac(new ConnectListener() {
 			@Override
 			public void onConnect(boolean isConnect, String reason, String response) {
 				if (isConnect) {

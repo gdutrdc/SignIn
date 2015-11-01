@@ -15,7 +15,7 @@ import java.util.Map;
 /**
  * Created by seasonyuu on 15/9/19.
  */
-public class RegisterMac extends BaseConnect {
+public class RegisteMac extends BaseConnect {
 	private User user;
 
 	private final int RESULT_SUCCESS = 1;
@@ -24,7 +24,7 @@ public class RegisterMac extends BaseConnect {
 	private final int RESULT_MAC_NULL = -2;
 	private final int RESULT_ALREADY = -3;
 
-	public RegisterMac(ConnectListener listener) {
+	public RegisteMac(ConnectListener listener) {
 		super(listener);
 
 		user = SignInApp.user;
@@ -54,7 +54,7 @@ public class RegisterMac extends BaseConnect {
 
 	@Override
 	protected String getTag() {
-		return RegisterMac.class.getSimpleName();
+		return RegisteMac.class.getSimpleName();
 	}
 
 	@Override
