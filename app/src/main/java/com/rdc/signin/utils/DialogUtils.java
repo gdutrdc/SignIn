@@ -21,6 +21,10 @@ public class DialogUtils {
 		progressDialog.show();
 	}
 
+	public static void showProgressDialog(Context context, int stringId) {
+		showProgressDialog(context, context.getResources().getString(stringId));
+	}
+
 	public static void dismissAllDialog() {
 		if (progressDialog != null && progressDialog.isShowing())
 			progressDialog.dismiss();

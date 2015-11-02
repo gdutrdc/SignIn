@@ -47,6 +47,12 @@
     </string-array>
     <!-- 课程信息界面 -->
     <string name="student_list">学生列表</string>
+    <string name="ask_for_leave">请假</string>
+
+    <!-- 请假 -->
+    <string name="ask_for_leave_time">请假时间</string>
+    <string name="ask_for_leave_reason">请假理由</string>
+    <string name="send">发送</string>
 
     <!-- 签到界面 -->
     <string name="start_sign_in">开始签到</string>
@@ -60,6 +66,7 @@
     <string name="un_login">您尚未登录，请重新登录</string>
     <string name="failed_to_get">获取失败</string>
     <string name="commit_success">提交成功</string>
+    <string name="sending">正在发送</string>
     <string name="loading">加载中</string>
     <string name="please_wait">请稍候</string>
     <string name="un_sign_in">当前课程签到结果尚未提交</string>

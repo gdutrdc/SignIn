@@ -55,6 +55,7 @@
             android:label="@string/settings"/>
         <activity android:name=".ui.teacher.TchStudentListActivity"
                   android:label="@string/student_list"/>
+        <activity android:name=".ui.student.StdAskForLeaveActivity"/>
 
 
 

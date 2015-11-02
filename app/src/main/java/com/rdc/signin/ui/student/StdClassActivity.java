@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -32,7 +34,7 @@ public class StdClassActivity extends AbsClassActivity {
 	protected void onFABClick(FloatingActionButton fab) {
 		Intent intent = new Intent(this, StdSignInActivity.class);
 		intent.putExtra("mac", mClass.getMac());
-		intent.putExtra("id",mClass.getClassId());
+		intent.putExtra("id", mClass.getClassId());
 		startActivity(intent);
 	}
 
@@ -64,5 +66,23 @@ public class StdClassActivity extends AbsClassActivity {
 		tvClassHour.setText(mClass.getHour());
 		tvClassAbout.setText(mClass.getAbout());
 		tvAbsence.setText(Integer.parseInt(mClass.getSum()) - Integer.parseInt(mClass.getSignTimes()) + "");
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.menu_std_class, menu);
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case R.id.std_ask_for_leave:
+				Intent intent = new Intent(this, StdAskForLeaveActivity.class);
+				intent.putExtra("class", mClass);
+				startActivity(intent);
+				break;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 }

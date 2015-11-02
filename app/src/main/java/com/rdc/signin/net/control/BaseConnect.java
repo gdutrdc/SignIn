@@ -65,6 +65,7 @@ public abstract class BaseConnect {
 		}, new Response.ErrorListener() {
 			@Override
 			public void onErrorResponse(VolleyError error) {
+				Log.e("Volley", "onError true");
 				onResult(false, error.getMessage(), null);
 				error.printStackTrace();
 			}
@@ -74,7 +75,7 @@ public abstract class BaseConnect {
 				return getRequestParams();
 			}
 		};
-		NetworkControl.getInstance().addRequest(request, null);
+		NetworkControl.getInstance().addRequest(request, getTag());
 	}
 
 }

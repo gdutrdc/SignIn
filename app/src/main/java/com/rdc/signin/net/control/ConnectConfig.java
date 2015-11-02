@@ -98,4 +98,17 @@ public class ConnectConfig {
 		public static final String REQUEST_DATE = "date";
 	}
 
+	public static class GetMsgList {
+		public static final String URL_STD = HOST + "Student/Message/getMsgList";
+		public static final String URL_TCH = HOST + "Teacher/Message/getMsgList";
+
+		public static final String RESPONSE_MSG_LIST = "msglist";
+	}
+
+	public static class AskForLeave {
+		public static final String URL = HOST + "Student/Class/askForLeaveAction";
+
+		public static final String REQUEST_CLASS_ID = "classId";
+	}
+
 }
