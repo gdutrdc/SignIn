@@ -74,5 +74,7 @@ public class DoLoginAction extends BaseConnect {
 						listener.onConnect(false, "密码不正确", response);
 					break;
 			}
+		else if (listener != null)
+			listener.onConnect(false, reason, null);
 	}
 }
