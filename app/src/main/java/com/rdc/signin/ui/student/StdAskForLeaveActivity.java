@@ -3,6 +3,7 @@ package com.rdc.signin.ui.student;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -53,8 +54,18 @@ public class StdAskForLeaveActivity extends ToolbarActivity implements View.OnCl
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.std_ask_for_leave_send:
-				DialogUtils.showProgressDialog(this, R.string.sending);
-				askForLeave();
+				new AlertDialog.Builder(this)
+						.setTitle(R.string.notice)
+						.setMessage(R.string.ask_for_leave_tips)
+						.setPositiveButton(R.string.ensure, new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								DialogUtils.showProgressDialog(
+										StdAskForLeaveActivity.this, R.string.sending);
+								askForLeave();
+							}
+						}).setNegativeButton(R.string.cancel, null)
+						.show();
 				break;
 		}
 		return super.onOptionsItemSelected(item);

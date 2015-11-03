@@ -63,10 +63,13 @@
     <string name="sign_in_by_barcode">通过二维码签到</string>
 
     <!-- 各界面提示文本 -->
+    <string name="ensure">确定</string>
+    <string name="notice">提示</string>
     <string name="un_login">您尚未登录，请重新登录</string>
     <string name="failed_to_get">获取失败</string>
     <string name="commit_success">提交成功</string>
     <string name="sending">正在发送</string>
+    <string name="ask_for_leave_tips">请注意，该申请虽然会通知任课老师，但你仍需要将相关证明递交给教师查阅后才由教师决定是否抵消考勤记录</string>
     <string name="loading">加载中</string>
     <string name="please_wait">请稍候</string>
     <string name="un_sign_in">当前课程签到结果尚未提交</string>

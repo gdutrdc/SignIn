@@ -51,4 +51,5 @@
         android:background="@null"
         android:gravity="top"
         android:hint="@string/ask_for_leave_reason"/>
+
 </LinearLayout>
