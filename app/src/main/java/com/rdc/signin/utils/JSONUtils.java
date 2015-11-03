@@ -2,6 +2,7 @@ package com.rdc.signin.utils;
 
 import android.os.Parcelable;
 
+import com.rdc.signin.constant.Message;
 import com.rdc.signin.constant.StdClass;
 import com.rdc.signin.constant.Student;
 import com.rdc.signin.constant.TchClass;
@@ -165,5 +166,39 @@ public class JSONUtils {
 			e.printStackTrace();
 		}
 		return tchClass;
+	}
+
+	public static ArrayList<Message> getMessageList(String json) {
+		ArrayList<Message> result = null;
+		try {
+			JSONObject jsonObject = new JSONObject(json);
+			JSONArray jsonArray = jsonObject.getJSONArray(ConnectConfig.GetMsgList.RESPONSE_MSG_LIST);
+			result = new ArrayList<>();
+			for (int i = 0; i < jsonArray.length(); i++) {
+				result.add(getMessage(jsonArray.getString(i)));
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public static Message getMessage(String json) {
+		Message msg = null;
+		try {
+			JSONObject jsonObject = new JSONObject(json);
+			msg = new Message();
+			msg.setSenderAccount(jsonObject.getString(ConnectConfig.GetMsgList.RESPONSE_SENDER_ACCOUNT));
+			msg.setSenderName(jsonObject.getString(ConnectConfig.GetMsgList.RESPONSE_SENDER_NAME));
+			msg.setType(jsonObject.getInt(ConnectConfig.GetMsgList.RESPONSE_TYPE));
+			msg.setMsgId(jsonObject.getString(ConnectConfig.GetMsgList.RESPONSE_MSG_ID));
+			msg.setTime(jsonObject.getLong(ConnectConfig.GetMsgList.RESPONSE_TIME));
+			msg.setDetail(jsonObject.getString(ConnectConfig.GetMsgList.RESPONSE_DETAIL));
+			msg.setHandle(jsonObject.getInt(ConnectConfig.GetMsgList.RESPONSE_HANDLE));
+			msg.setClassName(jsonObject.getString(ConnectConfig.GetMsgList.RESPONSE_CLASS_NAME));
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return msg;
 	}
 }

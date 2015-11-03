@@ -103,6 +103,14 @@ public class ConnectConfig {
 		public static final String URL_TCH = HOST + "Teacher/Message/getMsgList";
 
 		public static final String RESPONSE_MSG_LIST = "msglist";
+		public static final String RESPONSE_SENDER_ACCOUNT = "senderaccount";
+		public static final String RESPONSE_SENDER_NAME = "sendername";
+		public static final String RESPONSE_MSG_ID = "msgid";
+		public static final String RESPONSE_TIME = "time";
+		public static final String RESPONSE_DETAIL = "detail";
+		public static final String RESPONSE_HANDLE = "handle";
+		public static final String RESPONSE_CLASS_NAME = "classname";
+		public static final String RESPONSE_TYPE = "type";
 	}
 
 	public static class AskForLeave {

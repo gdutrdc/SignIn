@@ -13,6 +13,7 @@ import com.rdc.signin.net.common.GetClassListAction;
 import com.rdc.signin.net.control.ConnectListener;
 import com.rdc.signin.ui.adapter.ClassListAdapter;
 import com.rdc.signin.ui.common.AbsMainActivity;
+import com.rdc.signin.ui.common.MessageListActivity;
 import com.rdc.signin.ui.register.LoginActivity;
 import com.rdc.signin.utils.JSONUtils;
 
@@ -86,6 +87,9 @@ public class StdMainActivity extends AbsMainActivity implements View.OnClickList
 				finish();
 				break;
 			case R.id.nav_email_std:
+				Intent message = new Intent(this, MessageListActivity.class);
+				startActivity(message);
+				break;
 			case R.id.nav_settings_std:
 				startSettingsActivity();
 				break;

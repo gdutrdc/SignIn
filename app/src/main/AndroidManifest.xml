@@ -53,10 +53,13 @@
         <activity
             android:name=".ui.student.StdSettingsActivity"
             android:label="@string/settings"/>
-        <activity android:name=".ui.teacher.TchStudentListActivity"
-                  android:label="@string/student_list"/>
+        <activity
+            android:name=".ui.teacher.TchStudentListActivity"
+            android:label="@string/student_list"/>
         <activity android:name=".ui.student.StdAskForLeaveActivity"/>
-
+        <activity
+            android:name=".ui.common.MessageListActivity"
+            android:label="@string/message"/>
 
 
         <!-- push应用定义消息receiver声明 -->

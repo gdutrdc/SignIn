@@ -16,6 +16,7 @@
     <!-- Drawer -->
     <string name="open_drawer">Open Drawer</string>
     <string name="close_drawer">Close Drawer</string>
+    <string name="message">消息</string>
     <string name="quit">退出</string>
 
     <!-- 设置相关 -->
